@@ -1,0 +1,483 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+  <style>
+    :root{
+      --blue:#004165; --blue-lift:#006094; --blue-deep:#00314E; --blue-950:#001626;
+      --maroon:#A03C4B; --maroon-deep:#772432; --yellow:#F2DF74;
+      --green:#2F7D52; --amber:#8A6410; --red:#A33327;
+      --ground:#F5F5F5; --surface:#FFFFFF; --surface-2:#E7E9E9;
+      --ink:#1A1A1A; --ink-2:#5B656D; --ink-3:#788289;
+      --line:#DADEDD; --line-strong:#CBD0D0;
+      --sans:"Source Sans 3",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+      --display:"Source Serif 4",Georgia,"Times New Roman",serif;
+      --shell:1200px;
+      --h1:clamp(2.9rem,1.9rem + 4.6vw,5rem);
+      --h2:clamp(2rem,1.4rem + 3vw,3.4rem);
+      --h3:clamp(1.3rem,1.15rem + .7vw,1.7rem);
+      --lede:clamp(1.16rem,1.06rem + .6vw,1.46rem);
+      --body:1.16rem;
+      --band:clamp(72px,10vw,140px);
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;}
+    h1,h2,h3,.display{font-family:var(--display);margin:0;letter-spacing:-.022em;text-wrap:balance;}
+    p{margin:0;text-wrap:pretty;}
+    img{display:block;max-width:100%;}
+    a{color:var(--maroon);text-underline-offset:3px;}
+    a:hover{color:var(--maroon-deep);}
+    .shell{max-width:var(--shell);margin:0 auto;padding:0 28px;}
+
+    @keyframes riseIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+    .reveal{animation:riseIn .7s cubic-bezier(.2,.7,.2,1) both;}
+    .d1{animation-delay:.06s;} .d2{animation-delay:.13s;} .d3{animation-delay:.2s;}
+    @media (prefers-reduced-motion:reduce){.reveal{animation:none;}}
+
+    .grain{position:relative;isolation:isolate;}
+    .grain::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.16;mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+    .grain>*{position:relative;z-index:1;}
+
+    /* utility strip */
+    .strip{background:var(--blue-950);color:#fff;font-size:.95rem;}
+    .strip .shell{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;padding-block:12px;}
+    .strip b{font-weight:600;}
+    .strip .free{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.34);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;}
+    .strip .jump{margin-left:auto;color:#fff;font-weight:600;text-decoration:none;}
+    .strip .jump:hover{color:var(--yellow);}
+
+    /* header */
+    header.site{background:var(--blue);color:#fff;}
+    header.site .shell{display:flex;align-items:center;justify-content:space-between;gap:18px 30px;flex-wrap:wrap;padding-block:20px;}
+    .clubname{font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:-.02em;color:#fff;text-decoration:none;}
+    nav.main{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:center;}
+    nav.main a{color:#D6E3EA;text-decoration:none;font-weight:600;font-size:1rem;padding:8px 2px;border-bottom:2px solid transparent;}
+    nav.main a:hover{color:#fff;border-bottom-color:var(--yellow);}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;gap:10px;font-family:var(--sans);font-weight:700;font-size:1.03rem;text-decoration:none;border:2px solid transparent;border-radius:7px;cursor:pointer;transition:background-color .14s,border-color .14s,transform .14s;}
+    .btn:active{transform:translateY(1px);}
+    .btn-guest{background:#fff;color:var(--blue);}
+    .btn-guest:hover{background:#E4EDF3;}
+    .btn-solid{background:var(--blue);color:#fff;}
+    .btn-solid:hover{background:var(--blue-lift);}
+    .btn-out{border-color:rgba(255,255,255,.5);color:#fff;}
+    .btn-out:hover{border-color:var(--yellow);}
+    .btn-ink-out{border-color:var(--line-strong);color:var(--ink);}
+    .btn-ink-out:hover{border-color:var(--maroon);color:var(--maroon);}
+
+    /* hero */
+    .hero{background:var(--blue);color:#fff;padding-bottom:clamp(40px,6vw,72px);}
+    .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(32px,5vw,64px);align-items:center;padding-top:clamp(40px,6vw,72px);}
+    .hero h1{font-size:var(--h1);font-weight:700;line-height:.98;color:#fff;max-width:15ch;}
+    .hero .lede{font-size:var(--lede);color:#CFE0E9;margin-top:26px;max-width:34ch;font-weight:400;}
+    .hero .only{display:block;margin-top:28px;padding:14px 18px;border-left:4px solid var(--yellow);background:rgba(255,255,255,.08);font-size:1.02rem;color:#EAF2F6;max-width:44ch;}
+    .hero .only b{color:#fff;font-weight:700;}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+    .hero figure{margin:0;}
+    .hero figure img{width:100%;height:auto;border-radius:3px;box-shadow:0 30px 60px -24px rgba(0,10,20,.55);filter:saturate(.9) contrast(1.04);}
+    .hero figcaption{font-size:.9rem;color:#9FBACA;margin-top:12px;}
+
+    .next{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;margin-top:clamp(36px,5vw,60px);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:10px;overflow:hidden;}
+    .next>div{background:var(--blue);padding:22px 22px;}
+    .next dt{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+    .next dd{margin:0;font-family:var(--display);font-weight:700;font-size:1.28rem;line-height:1.12;color:#fff;}
+    .next dd small{display:block;font-family:var(--sans);font-weight:400;font-size:.92rem;color:#BCD2DE;margin-top:5px;}
+    .cadence{margin-top:22px;color:#CFE0E9;font-size:1.02rem;}
+    .cadence strong{color:#fff;}
+
+    /* bands */
+    .band{padding:var(--band) 0;}
+    .band-soft{background:var(--surface);border-block:1px solid var(--line);}
+    .band-blue{background:var(--blue);color:#fff;}
+    .kicker{font-size:.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 16px;color:var(--maroon);}
+    .band-blue .kicker{color:var(--yellow);}
+    h2.sec{font-size:var(--h2);font-weight:700;line-height:1.03;max-width:20ch;}
+    .band-blue h2.sec{color:#fff;}
+    .sec-lede{font-size:var(--lede);max-width:60ch;margin-top:20px;color:var(--ink-2);font-weight:400;}
+    .band-blue .sec-lede{color:#CFDEE7;}
+
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;}
+    .two-wide{grid-template-columns:1.1fr .9fr;}
+
+    .promise .big{font-family:var(--display);font-weight:700;font-size:var(--h2);line-height:1.02;color:var(--ink);}
+    .promise ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;}
+    .promise li{padding-left:32px;position:relative;color:var(--ink-2);}
+    .promise li strong{color:var(--ink);font-weight:700;}
+    .promise li::before{content:"";position:absolute;left:0;top:.42em;width:14px;height:8px;border-left:2.5px solid var(--maroon);border-bottom:2.5px solid var(--maroon);transform:rotate(-45deg);}
+
+    blockquote.shout{margin:0;padding:28px 0 28px 30px;border-left:5px solid var(--maroon);font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,1.1rem + 1.6vw,2.2rem);line-height:1.14;color:var(--ink);}
+    blockquote.shout footer{font-family:var(--sans);font-weight:400;font-size:1.02rem;color:var(--ink-2);margin-top:18px;line-height:1.55;}
+
+    .runsheet{margin-top:8px;display:flex;flex-direction:column;}
+    .step{display:grid;grid-template-columns:64px 1fr;gap:0 24px;}
+    .lampcol{display:flex;flex-direction:column;align-items:center;}
+    .lamp{width:32px;height:32px;border-radius:50%;flex:none;border:2px solid currentColor;display:grid;place-items:center;}
+    .lamp i{width:13px;height:13px;border-radius:50%;background:currentColor;display:block;}
+    .lamp.g{color:var(--green);} .lamp.a{color:var(--amber);} .lamp.r{color:var(--red);} .lamp.n{color:var(--ink-3);}
+    .rail{width:2px;flex:1 1 auto;background:var(--line-strong);min-height:18px;}
+    .step:last-child .rail{display:none;}
+    .step-body{padding-bottom:34px;}
+    .step:last-child .step-body{padding-bottom:0;}
+    .step h3{font-size:var(--h3);font-weight:700;margin-bottom:6px;}
+    .step .when{font-size:.9rem;color:var(--ink-3);font-variant-numeric:tabular-nums;margin-bottom:6px;}
+    .step p{color:var(--ink-2);max-width:56ch;}
+
+    .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px;}
+    .fact{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;}
+    .fact .lab{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
+    .fact .big{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1.05;margin:10px 0;color:var(--maroon);}
+    .fact p{font-size:.98rem;color:var(--ink-2);}
+
+    figure.photo{margin:0;}
+    figure.photo img{width:100%;height:auto;border-radius:4px;filter:saturate(.9) contrast(1.04);}
+    figure.photo figcaption{font-size:.9rem;color:var(--ink-3);margin-top:10px;}
+    .band-blue figure.photo figcaption{color:#B7CDDA;}
+
+    .route{background:var(--surface-2);border-radius:10px;padding:22px 24px;font-size:1rem;color:var(--ink-2);margin-top:22px;}
+    .route b{display:block;color:var(--ink);font-weight:700;margin-bottom:9px;font-family:var(--display);}
+
+    details{border-bottom:1px solid var(--line);}
+    details summary{cursor:pointer;list-style:none;position:relative;padding:24px 52px 24px 0;font-family:var(--display);font-weight:700;font-size:1.22rem;color:var(--ink);}
+    details summary::-webkit-details-marker{display:none;}
+    details summary::after{content:"";position:absolute;right:12px;top:34px;width:11px;height:11px;border-right:2.5px solid var(--maroon);border-bottom:2.5px solid var(--maroon);transform:rotate(45deg);}
+    details[open] summary::after{transform:rotate(-135deg);top:38px;}
+    details .ans{padding-bottom:26px;color:var(--ink-2);max-width:62ch;}
+
+    /* contact form */
+    form{display:flex;flex-direction:column;gap:18px;}
+    label{display:flex;flex-direction:column;gap:7px;font-weight:600;font-size:1rem;}
+    input,textarea{font-family:var(--sans);font-size:1.04rem;padding:14px 15px;min-height:52px;border:2px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);}
+    textarea{min-height:130px;resize:vertical;}
+    input:focus,textarea:focus{outline:none;border-color:var(--maroon);box-shadow:0 0 0 3px rgba(160,60,75,.2);}
+    .field-focus{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(160,60,75,.2);}
+
+    /* footer */
+    footer.site{background:var(--blue-deep);color:#B9CCD6;font-size:.98rem;}
+    .logoband{background:var(--blue-deep);}
+    .logoband img{width:100%;height:auto;}
+    .foot-cols{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;padding-top:44px;}
+    footer.site a{color:#fff;}
+    footer.site .fname{font-family:var(--display);font-weight:700;color:#fff;font-size:1.15rem;margin-bottom:12px;}
+    .legal{margin-top:38px;padding:24px 0 44px;border-top:1px solid rgba(255,255,255,.14);font-size:.82rem;color:#8FA8B4;max-width:80ch;line-height:1.6;display:flex;flex-direction:column;gap:10px;}
+  </style>
+</helmet>
+
+<div>
+  <div class="strip">
+    <div class="shell">
+      <span><b>Volgende meeting:</b> dinsdag 15 september, 20:00&ndash;22:00</span>
+      <span>Sportcentrum Olympia, Hasselt</span>
+      <span class="free">Gratis &amp; vrijblijvend</span>
+      <a class="jump" href="#kom-langs">Meld je aan als gast &rarr;</a>
+    </div>
+  </div>
+
+  <header class="site">
+    <div class="shell">
+      <a class="clubname" href="#top">Toastmasters Hasselt</a>
+      <nav class="main">
+        <a href="#verwachten">Wat mag je verwachten</a>
+        <a href="#spreekangst">Spreekangst</a>
+        <a href="#praktisch">Praktisch</a>
+        <a href="#vragen">Veelgestelde vragen</a>
+        <a class="btn btn-guest" href="#kom-langs">Kom langs als gast</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero grain" id="top">
+    <div class="shell">
+      <div class="hero-grid">
+        <div class="reveal">
+          <h1>Leer spreken voor publiek. In het Nederlands, in Hasselt.</h1>
+          <p class="lede">Twee keer per maand oefenen we samen presenteren. Geen opleiding met slides en een lesgever &mdash; gewoon spreken, en eerlijke feedback van mensen die het zelf ook leren.</p>
+          <p class="only"><b>De enige volledig Nederlandstalige Toastmasters-club in Vlaanderen.</b> Antwerpen, Gent en Leuven werken tweetalig. Bij ons is alles Nederlands.</p>
+          <div class="hero-cta">
+            <a class="btn btn-guest" href="#kom-langs">Kom langs als gast</a>
+            <a class="btn btn-out" href="#verwachten">Wat gebeurt er op zo'n avond?</a>
+          </div>
+        </div>
+        <figure class="reveal d2">
+          <img src="zaal.webp" alt="Een volle zaal met tientallen lachende deelnemers van Toastmasters Hasselt, velen met de duim omhoog." width="950" height="534">
+          <figcaption>Een volle zaal bij Toastmasters Hasselt.</figcaption>
+        </figure>
+      </div>
+
+      <dl class="next reveal d3">
+        <div>
+          <dt>Volgende meeting</dt>
+          <dd>dinsdag 15 september<small>om 20:00, over 8 dagen</small></dd>
+        </div>
+        <div>
+          <dt>Waar</dt>
+          <dd>Sportcentrum Olympia<small>Kuringersteenweg 242, Hasselt</small></dd>
+        </div>
+        <div>
+          <dt>Wat kost een bezoek</dt>
+          <dd>Niets<small>Kom vrijblijvend kijken, zo vaak je wil</small></dd>
+        </div>
+        <div>
+          <dt>Moet je spreken?</dt>
+          <dd>Nee<small>Je mag gewoon achteraan zitten en kijken</small></dd>
+        </div>
+      </dl>
+      <p class="cadence">We komen samen op de <strong>eerste en derde dinsdag</strong> van elke maand, om 20:00. Daarna is het dinsdag 6 oktober.</p>
+    </div>
+  </section>
+
+  <section class="band band-soft" id="belofte">
+    <div class="shell">
+      <div class="two two-wide promise">
+        <div class="reveal">
+          <p class="kicker">Voor je iets durft te vragen</p>
+          <p class="big">Je hoeft niets te zeggen. Kijken mag.</p>
+        </div>
+        <ul class="reveal d2">
+          <li>Gasten worden aangemoedigd om mee te doen, maar <strong>nooit verplicht</strong>. Je mag gewoon achteraan zitten en toekijken.</li>
+          <li>Kom zo vaak langs als je wil. Pas na drie keer sfeer proeven vragen we of je lid wil worden.</li>
+          <li>E&eacute;n ding gebeurt wel: aan het begin vragen we kort hoe je ons gevonden hebt. Dertig seconden, meer niet.</li>
+          <li>Je hoeft niets mee te brengen en er is geen dresscode. Kom zoals je bent.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="spreekangst">
+    <div class="shell">
+      <div class="reveal">
+        <p class="kicker">Even eerlijk</p>
+        <h2 class="sec">Spreekangst of podiumvrees overwinnen?</h2>
+        <p class="sec-lede" style="margin-bottom:44px">We gaan je geen trucje verkopen. Dit is wat wel werkt.</p>
+      </div>
+      <div class="two two-wide">
+        <div class="reveal d2" style="display:flex;flex-direction:column;gap:16px;color:var(--ink-2);max-width:60ch;">
+          <p>Ben je op zoek naar die magische techniek om in een vingerknip je podiumangst te overwinnen? Dan kunnen we je helaas niet helpen.</p>
+          <p>De enige manier om er echt overheen te raken is door <strong style="color:var(--ink)">heel vaak op dat podium te gaan staan</strong>. En net daarvoor krijg je bij ons de kans. Je kan heel klein beginnen: een table topic van dertig seconden, of een rol als timekeeper waarbij je eigenlijk alleen een lijst met getallen afleest.</p>
+          <p><strong style="color:var(--ink)">Er zijn geen negatieve gevolgen aan stress, fouten maken, blackouts of bibberende handen op een Toastmasterspodium.</strong> De meesten van ons hebben het precies zo meegemaakt.</p>
+          <p>Geen therapie, geen diagnose, geen behandeling. Gewoon oefenen, twee keer per maand, tussen mensen die hetzelfde aan het leren zijn. Zit je angst dieper dan dat, dan is een psycholoog de juiste plek &mdash; en dat zeggen we liever eerlijk.</p>
+        </div>
+        <blockquote class="shout reveal d3">
+          &ldquo;OH HELP IK STA OP EEN PODIUM DIE MENSEN KIJKEN NAAR MIJ WAT MOET IK DOEN&rdquo;
+          <footer>Zo voelde bijna iedereen hier zich de eerste keer. Diezelfde mensen staan er nu ontspannen bij. Dat is het hele punt van oefenen.</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-soft" id="verwachten">
+    <div class="shell">
+      <div class="reveal">
+        <p class="kicker">Wat mag je verwachten</p>
+        <h2 class="sec">Zo verloopt een avond</h2>
+        <p class="sec-lede" style="margin-bottom:48px">We starten om 20:00 en eindigen om 22:00. Kom een tiental minuten vroeger, dan verwelkomen we je even en leggen we uit hoe de avond in elkaar zit. En ja &mdash; we gebruiken echt groene, oranje en rode lichten voor de spreektijd.</p>
+      </div>
+      <div class="runsheet reveal d2">
+        <div class="step">
+          <div class="lampcol"><span class="lamp g"><i></i></span><span class="rail"></span></div>
+          <div class="step-body">
+            <h3>Voorbereide speeches</h3>
+            <p class="when">3 &agrave; 4 speeches van 5 tot 7 minuten</p>
+            <p>Leden brengen een speech die ze thuis voorbereid hebben. Het onderwerp kies je helemaal zelf &mdash; je job, een maatschappelijke kwestie, of het recept voor konijn met pruimen van je grootmoeder.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="lampcol"><span class="lamp a"><i></i></span><span class="rail"></span></div>
+          <div class="step-body">
+            <h3>Evaluaties</h3>
+            <p>Iemand vertelt je wat sterk was en wat beter kan. Anderen letten op je timing, je stopwoorden en je taalgebruik. Niet om je af te breken &mdash; om je scherper te maken.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="lampcol"><span class="lamp n"><i></i></span><span class="rail"></span></div>
+          <div class="step-body">
+            <h3>Pauze en intermezzo</h3>
+            <p>Een mop en een serieuze gedachte. Even ademhalen.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="lampcol"><span class="lamp r"><i></i></span><span class="rail"></span></div>
+          <div class="step-body">
+            <h3>Table Topics</h3>
+            <p class="when">1 &agrave; 2 minuten, onvoorbereid</p>
+            <p>De improvisatieronde. Je krijgt een onderwerp en praat erover. Meestal iets ludieks &mdash; ooit moesten we uitleggen welk voorwerp in huis we waren. Een zetel, een wc-bril, een wasknijper. Gasten mogen, maar hoeven niet.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="lampcol"><span class="lamp n"><i></i></span><span class="rail"></span></div>
+          <div class="step-body">
+            <h3>Napraten in de bar</h3>
+            <p class="when">Vanaf 22:00, voor wie wil</p>
+            <p>Pintjes en warme choco's. Voor veel leden is dit eerlijk gezegd het belangrijkste deel van de avond.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-blue grain">
+    <div class="shell">
+      <div class="two">
+        <div class="reveal">
+          <p class="kicker">Wie je er zal tegenkomen</p>
+          <h2 class="sec">Gewone mensen die graag beter willen leren spreken</h2>
+          <p class="sec-lede">Van mensen die nog nooit voor een groep stonden tot leden die al jaren meedraaien. Niemand is hier omdat hij het al kan.</p>
+        </div>
+        <figure class="photo reveal d2">
+          <img src="bar.webp" alt="Leden van Toastmasters Hasselt heffen samen het glas in de bar na een clubavond." width="900" height="675">
+          <figcaption>Na de meeting, in de bar naast de bowling.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="praktisch">
+    <div class="shell">
+      <div class="reveal">
+        <p class="kicker">Praktisch</p>
+        <h2 class="sec">Wanneer, waar en wat het kost</h2>
+      </div>
+      <div class="facts reveal d2">
+        <div class="fact">
+          <span class="lab">Wanneer</span>
+          <div class="big">1<sup>e</sup> &amp; 3<sup>e</sup> dinsdag</div>
+          <p>Elke maand, van 20:00 tot 22:00. Volgende keer op dinsdag 15 september.</p>
+        </div>
+        <div class="fact">
+          <span class="lab">Eerst komen kijken</span>
+          <div class="big">Gratis</div>
+          <p>Zo vaak je wil, zonder verplichting en zonder je vooraf in te schrijven.</p>
+        </div>
+        <div class="fact">
+          <span class="lab">Lidgeld, eerste jaar</span>
+          <div class="big">&euro;197</div>
+          <p>Daarna &euro;177 per jaar. Zo'n &euro;7,40 per clubavond &mdash; we komen 24 keer per jaar samen. Een tweedaagse presentatieopleiding kost al snel &euro;620.</p>
+        </div>
+        <div class="fact">
+          <span class="lab">Jouw tempo</span>
+          <div class="big">Jij beslist</div>
+          <p>Elke maand een speech als je snel vooruit wil. Of om de twee &agrave; drie maanden. Geen quota.</p>
+        </div>
+      </div>
+
+      <div class="two reveal" style="margin-top:64px;align-items:center;">
+        <figure class="photo">
+          <img src="publiek.webp" alt="Leden van Toastmasters Hasselt luisteren naar een speech in de zaal." width="900" height="675">
+        </figure>
+        <div>
+          <h3 style="font-size:var(--h3);font-weight:700;margin-bottom:16px;">Sportcentrum Olympia</h3>
+          <p style="color:var(--ink-2);max-width:46ch;">Kuringersteenweg 242, 3500 Hasselt. Er is een ruime parking voor het gebouw. Met het openbaar vervoer is het ongeveer vijftien minuten wandelen vanaf het station.</p>
+          <div class="route">
+            <b>De weg naar het zaaltje</b>
+            Eenmaal binnen ga je rechts langs de balie, tussen de bowlingbanen door tot helemaal achteraan. Daar ga je het trapje af, door de smalle gang, tot aan het theaterzaaltje. Of je vraagt gewoon de weg aan een medewerker.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-soft" id="vragen">
+    <div class="shell">
+      <div class="reveal">
+        <p class="kicker">Veelgestelde vragen</p>
+        <h2 class="sec" style="margin-bottom:24px">Alles wat je je waarschijnlijk afvraagt</h2>
+      </div>
+      <div style="max-width:60rem" class="reveal d2">
+        <details open>
+          <summary>Moet ik lid worden om te komen kijken?</summary>
+          <div class="ans">Nee. Kom gerust een paar keer vrijblijvend langs. Pas als je na een paar bezoeken denkt dat het iets voor jou is, vragen we of je lid wil worden.</div>
+        </details>
+        <details>
+          <summary>Moet ik spreken als ik langskom?</summary>
+          <div class="ans">Niet als je dat niet wil. Je mag gewoon achteraan zitten en toekijken. Wil je toch iets zeggen, dan kan dat heel klein beginnen.</div>
+        </details>
+        <details>
+          <summary>Is het echt allemaal in het Nederlands?</summary>
+          <div class="ans">Ja. Wij zijn de enige volledig Nederlandstalige Toastmasters-club in Vlaanderen. De clubs in Antwerpen, Gent en Leuven werken tweetalig.</div>
+        </details>
+        <details>
+          <summary>Hoe vaak komen jullie samen?</summary>
+          <div class="ans">Elke eerste en derde dinsdag van de maand, van 20:00 tot 22:00, in Sportcentrum Olympia in Hasselt.</div>
+        </details>
+        <details>
+          <summary>Wat kost het lidmaatschap?</summary>
+          <div class="ans">&euro;197 voor je eerste jaar, daarna &euro;177 per jaar. Kijken kost niets, zo vaak je wil.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="kom-langs">
+    <div class="shell">
+      <div class="reveal">
+        <p class="kicker">Kom langs</p>
+        <h2 class="sec">Zin om een keer te komen kijken?</h2>
+        <p class="sec-lede" style="margin-bottom:44px">Laat je gegevens achter en we laten weten wanneer de volgende meeting doorgaat. Je verbindt je tot niets, en we antwoorden binnen twee werkdagen.</p>
+      </div>
+      <div class="two reveal d2" style="align-items:start;">
+        <form>
+          <label>Naam
+            <input type="text" placeholder="Je naam">
+          </label>
+          <label>E-mailadres
+            <input type="email" class="field-focus" placeholder="jij@voorbeeld.be">
+          </label>
+          <label>Bericht (optioneel)
+            <textarea placeholder="Bijvoorbeeld: mag ik gewoon eens komen kijken?"></textarea>
+          </label>
+          <button type="button" class="btn btn-solid" style="align-self:flex-start">Verstuur</button>
+        </form>
+        <div>
+          <p style="color:var(--ink-2);max-width:44ch;">Liever gewoon mailen? Dat kan naar <a href="#">hasselt.toastmasters@gmail.com</a>.</p>
+          <div class="route">
+            <b>Je krijgt antwoord</b>
+            Je vraag komt bij een van onze bestuursleden terecht. Je krijgt binnen twee werkdagen antwoord &mdash; ook als je alleen maar wil weten of je gewoon eens mag komen kijken.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="logoband">
+      <img src="ti-logo-band.webp" alt="Toastmasters International" width="1200" height="387">
+    </div>
+    <div class="shell">
+      <div class="foot-cols">
+        <div>
+          <div class="fname">Toastmasters Hasselt</div>
+          <div>Sportcentrum Olympia</div>
+          <div>Kuringersteenweg 242, 3500 Hasselt</div>
+          <div><a href="#">hasselt.toastmasters@gmail.com</a></div>
+        </div>
+        <div>
+          <div class="fname" style="font-size:1rem">Op deze site</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+            <a href="#verwachten">Wat mag je verwachten</a>
+            <a href="#spreekangst">Spreekangst overwinnen</a>
+            <a href="#praktisch">Praktisch en lidgeld</a>
+            <a href="#vragen">Veelgestelde vragen</a>
+          </div>
+        </div>
+        <div>
+          <div class="fname" style="font-size:1rem">Club</div>
+          <div style="margin-top:6px">Club 1049050 &middot; District 107</div>
+          <div><a href="#">Onze clubpagina bij Toastmasters International</a></div>
+        </div>
+      </div>
+      <div class="legal">
+        <p>The information on this website is for the sole use of Toastmasters' members, for Toastmasters business only. It is not to be used for solicitation and distribution of non-Toastmasters material or information.</p>
+        <p>&copy; 2026 Toastmasters International. All rights reserved. Toastmasters International, the Toastmasters International logo, and all other Toastmasters International trademarks and copyrights are the sole property of Toastmasters International and may be used only with permission.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>

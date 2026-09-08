@@ -1,0 +1,17 @@
+{
+  "name": "toastmasters-hasselt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Custom WordPress theme and tooling for www.toastmastershasselt.be",
+  "scripts": {
+    "start": "wp-env start",
+    "stop": "wp-env stop",
+    "reset": "wp-env clean all",
+    "wp": "wp-env run cli wp",
+    "lint:php": "for f in $(find theme plugins -name '*.php'); do php -l \"$f\" | grep -v 'No syntax errors' || true; done",
+    "ftp": "bash scripts/ftp.sh"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^11.14.0"
+  }
+}

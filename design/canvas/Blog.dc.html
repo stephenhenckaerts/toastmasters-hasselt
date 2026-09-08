@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+  <style>
+    :root{
+      --blue:#004165; --blue-lift:#006094; --blue-deep:#00314E; --blue-950:#001626;
+      --maroon:#A03C4B; --maroon-deep:#772432; --yellow:#F2DF74;
+      --ground:#F5F5F5; --surface:#FFFFFF; --surface-2:#E7E9E9;
+      --ink:#1A1A1A; --ink-2:#5B656D; --ink-3:#788289;
+      --line:#DADEDD; --line-strong:#CBD0D0;
+      --sans:"Source Sans 3",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+      --display:"Source Serif 4",Georgia,"Times New Roman",serif;
+      --shell:1200px;
+      --h1:clamp(2.4rem,1.7rem + 3.2vw,3.8rem);
+      --h2:clamp(2rem,1.4rem + 3vw,3.2rem);
+      --lede:clamp(1.14rem,1.05rem + .55vw,1.4rem);
+      --body:1.15rem;
+      --band:clamp(64px,8vw,112px);
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;}
+    h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.022em;text-wrap:balance;}
+    p{margin:0;text-wrap:pretty;}
+    img{display:block;max-width:100%;}
+    a{color:var(--maroon);text-underline-offset:3px;}
+    a:hover{color:var(--maroon-deep);}
+    .shell{max-width:var(--shell);margin:0 auto;padding:0 28px;}
+
+    @keyframes riseIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+    .reveal{animation:riseIn .65s cubic-bezier(.2,.7,.2,1) both;}
+    .d2{animation-delay:.1s;} .d3{animation-delay:.18s;}
+    @media (prefers-reduced-motion:reduce){.reveal{animation:none;}}
+
+    .strip{background:var(--blue-950);color:#fff;font-size:.95rem;}
+    .strip .shell{display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;padding-block:12px;}
+    .strip b{font-weight:600;}
+    .strip .free{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.34);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;}
+    .strip .jump{margin-left:auto;color:#fff;font-weight:600;text-decoration:none;}
+
+    header.site{background:var(--blue);color:#fff;}
+    header.site .shell{display:flex;align-items:center;justify-content:space-between;gap:18px 30px;flex-wrap:wrap;padding-block:20px;}
+    .clubname{font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:-.02em;color:#fff;text-decoration:none;}
+    nav.main{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:center;}
+    nav.main a{color:#D6E3EA;text-decoration:none;font-weight:600;font-size:1rem;padding:8px 2px;border-bottom:2px solid transparent;}
+    nav.main a:hover{color:#fff;border-bottom-color:var(--yellow);}
+    nav.main a[aria-current]{color:#fff;border-bottom-color:var(--yellow);}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;gap:10px;font-family:var(--sans);font-weight:700;font-size:1.03rem;text-decoration:none;border:2px solid transparent;border-radius:7px;cursor:pointer;}
+    .btn-guest{background:#fff;color:var(--blue);}
+    .btn-guest:hover{background:#E4EDF3;}
+    .btn-solid{background:var(--blue);color:#fff;}
+    .btn-solid:hover{background:var(--blue-lift);}
+
+    .band{padding:var(--band) 0;}
+    .band-soft{background:var(--surface);border-block:1px solid var(--line);}
+    .band-blue{background:var(--blue);color:#fff;}
+    .kicker{font-size:.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 16px;color:var(--maroon);}
+    .band-blue .kicker{color:var(--yellow);}
+    h2.sec{font-size:var(--h2);font-weight:700;line-height:1.03;}
+    .band-blue h2.sec{color:#fff;}
+    .sec-lede{font-size:var(--lede);max-width:58ch;margin-top:18px;color:var(--ink-2);font-weight:400;}
+    .band-blue .sec-lede{color:#CFDEE7;}
+
+    .postlist{display:flex;flex-direction:column;gap:22px;margin-top:44px;}
+    .postcard{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--maroon);border-radius:10px;padding:30px 32px;}
+    .postcard h3{font-size:clamp(1.35rem,1.1rem + 1vw,1.8rem);font-weight:700;line-height:1.16;}
+    .postcard h3 a{color:var(--ink);text-decoration:none;}
+    .postcard h3 a:hover{color:var(--maroon);}
+    .postcard .meta{font-size:.92rem;color:var(--ink-3);margin:8px 0 14px;}
+    .postcard .excerpt{color:var(--ink-2);max-width:70ch;}
+    .postcard .more{display:inline-block;margin-top:16px;color:var(--maroon);font-weight:600;text-decoration:none;}
+    .postcard .more:hover{text-decoration:underline;}
+
+    .pager{display:flex;gap:8px;margin-top:36px;}
+    .page-num{display:inline-flex;align-items:center;justify-content:center;min-width:46px;min-height:46px;padding:0 12px;border:1px solid var(--line);border-radius:7px;color:var(--ink);text-decoration:none;font-weight:600;}
+    .page-num.current{background:var(--blue);border-color:var(--blue);color:#fff;}
+
+    .seam{background:var(--ground);text-align:center;padding:40px 0;font-size:.82rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);border-block:1px dashed var(--line-strong);}
+
+    .single .cat{font-size:.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--maroon);}
+    .single h1{font-size:var(--h1);font-weight:700;line-height:1.05;margin-top:14px;max-width:24ch;}
+    .single .meta{font-size:.95rem;color:var(--ink-3);margin-top:16px;}
+    .single figure{margin:32px 0;}
+    .single figure img{width:100%;height:auto;border-radius:5px;filter:saturate(.9) contrast(1.04);}
+    .prose{max-width:62ch;color:var(--ink-2);display:flex;flex-direction:column;gap:18px;}
+    .prose h2{color:var(--ink);font-size:clamp(1.5rem,1.2rem + 1.3vw,2rem);font-weight:700;margin-top:16px;}
+    .prose strong{color:var(--ink);}
+    .prose blockquote{margin:8px 0;padding:6px 0 6px 24px;border-left:4px solid var(--maroon);color:var(--ink);font-family:var(--display);font-size:1.3rem;line-height:1.3;}
+
+    footer.site{background:var(--blue-deep);color:#B9CCD6;font-size:.95rem;padding:44px 0;}
+    footer.site a{color:#fff;}
+    footer.site .legal{margin-top:22px;font-size:.8rem;color:#8FA8B4;max-width:80ch;line-height:1.6;}
+  </style>
+</helmet>
+
+<div>
+  <div class="strip">
+    <div class="shell">
+      <span><b>Volgende meeting:</b> dinsdag 15 september, 20:00&ndash;22:00</span>
+      <span>Sportcentrum Olympia, Hasselt</span>
+      <span class="free">Gratis &amp; vrijblijvend</span>
+      <a class="jump" href="#">Meld je aan als gast &rarr;</a>
+    </div>
+  </div>
+
+  <header class="site">
+    <div class="shell">
+      <a class="clubname" href="#">Toastmasters Hasselt</a>
+      <nav class="main">
+        <a href="#">Wat mag je verwachten</a>
+        <a href="#">Spreekangst</a>
+        <a href="#">Praktisch</a>
+        <a href="#" aria-current="page">Blog</a>
+        <a class="btn btn-guest" href="#">Kom langs als gast</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="band">
+    <div class="shell">
+      <div class="reveal">
+        <p class="kicker">Toastmasters Hasselt</p>
+        <h2 class="sec">Blog</h2>
+        <p class="sec-lede">Verslagen van clubavonden, en wat we onderweg leren over spreken voor publiek.</p>
+      </div>
+
+      <div class="postlist reveal d2">
+        <article class="postcard">
+          <h3><a href="#">Waarom je eerste speech de moeilijkste en de belangrijkste is</a></h3>
+          <p class="meta">12 augustus 2026</p>
+          <p class="excerpt">Bijna niemand vindt zijn eerste speech goed. Toch is het net die eerste keer die alles in gang zet &mdash; hier is waarom we er zoveel aandacht aan besteden.</p>
+          <a class="more" href="#">Lees verder &rarr;</a>
+        </article>
+        <article class="postcard">
+          <h3><a href="#">Gesloten monden worden niet gevoed</a></h3>
+          <p class="meta">28 juni 2026</p>
+          <p class="excerpt">Een table topic over durven vragen, en wat er gebeurde toen een gast na drie bezoeken eindelijk zelf het woord nam.</p>
+          <a class="more" href="#">Lees verder &rarr;</a>
+        </article>
+        <article class="postcard">
+          <h3><a href="#">Wat een timekeeper eigenlijk doet, en waarom die rol zo nuttig is</a></h3>
+          <p class="meta">3 juni 2026</p>
+          <p class="excerpt">De timekeeper leest een lijst met getallen af en bedient drie lampjes. Klinkt saai. Is het beste startpunt dat we kennen voor wie nog niet durft.</p>
+          <a class="more" href="#">Lees verder &rarr;</a>
+        </article>
+      </div>
+
+      <div class="pager reveal d2">
+        <span class="page-num current">1</span>
+        <a class="page-num" href="#">2</a>
+        <a class="page-num" href="#">3</a>
+        <a class="page-num" href="#">Volgende</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-soft">
+    <div class="shell">
+      <p class="kicker">Kom langs</p>
+      <h2 class="sec">Zin om eens te komen kijken?</h2>
+      <p class="sec-lede">Gratis en vrijblijvend. Je hoeft niets te zeggen.</p>
+      <p style="margin-top:28px"><a class="btn btn-solid" href="#">Kom langs als gast</a></p>
+    </div>
+  </section>
+
+  <div class="seam">Zo ziet &eacute;&eacute;n bericht eruit</div>
+
+  <article class="band single">
+    <div class="shell reveal">
+      <p class="cat">Blog</p>
+      <h1>Waarom je eerste speech de moeilijkste en de belangrijkste is</h1>
+      <p class="meta">12 augustus 2026</p>
+      <figure>
+        <img src="publiek.webp" alt="Leden luisteren naar een speech in de zaal van Sportcentrum Olympia." width="900" height="675">
+      </figure>
+      <div class="prose">
+        <p>Iedereen die hier lid wordt, moet er ooit aan beginnen: de Ice Breaker, je allereerste voorbereide speech. Vier minuten over jezelf, voor een zaal die je nog nauwelijks kent. Bijna niemand vindt die speech achteraf goed.</p>
+        <p>En toch is het net die eerste keer die alles in gang zet. Want vanaf dat moment weet je hoe het voelt om daar te staan &mdash; en merk je dat er niets ergs gebeurt.</p>
+        <h2>Klein beginnen mag</h2>
+        <p>Je hoeft niet meteen met een Ice Breaker te starten. Veel nieuwe leden nemen eerst een paar keer een kleine rol: timekeeper, of grammaticacommissaris. Je zegt een paar zinnen, je zit weer. De drempel schuift zo vanzelf op.</p>
+        <blockquote>De enige manier om over podiumangst te raken is heel vaak op dat podium gaan staan.</blockquote>
+        <p>Dat is geen trucje en het gaat niet snel. Maar het werkt, en je staat er niet alleen voor.</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="band band-blue">
+    <div class="shell">
+      <p class="kicker">Kom het zelf bekijken</p>
+      <h2 class="sec">Elke eerste en derde dinsdag, 20:00</h2>
+      <p class="sec-lede">Sportcentrum Olympia, Hasselt. Gratis en vrijblijvend &mdash; je hoeft niets te zeggen.</p>
+      <p style="margin-top:28px"><a class="btn btn-guest" href="#">Kom langs als gast</a></p>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="shell">
+      <div>Toastmasters Hasselt &middot; Sportcentrum Olympia, Kuringersteenweg 242, 3500 Hasselt &middot; <a href="#">hasselt.toastmasters@gmail.com</a></div>
+      <div class="legal">
+        <p>The information on this website is for the sole use of Toastmasters' members, for Toastmasters business only. It is not to be used for solicitation and distribution of non-Toastmasters material or information.</p>
+        <p>&copy; 2026 Toastmasters International. All rights reserved. Toastmasters International, the Toastmasters International logo, and all other Toastmasters International trademarks and copyrights are the sole property of Toastmasters International and may be used only with permission.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>

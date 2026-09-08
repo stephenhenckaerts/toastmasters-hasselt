@@ -1,0 +1,11 @@
+node_modules/
+private/
+backups/
+*.env
+.wp-env.override.json
+.DS_Store
+*.log
+screenshots/
+
+# design canvas seeded payloads (large; re-seed from the .dc.html files)
+design/canvas/*-website.html

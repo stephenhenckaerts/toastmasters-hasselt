@@ -1,0 +1,15 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1280, "h": 9000 },
+    { "file": "Blog.dc.html", "x": 1440, "y": 0, "w": 1280, "h": 4100 },
+    { "file": "Contact.dc.html", "x": 2880, "y": 0, "w": 1120, "h": 1000 },
+    { "file": "Faq.dc.html", "x": 4160, "y": 0, "w": 1120, "h": 1450 }
+  ],
+  "annotations": [
+    { "id": "home-note", "x": 0, "y": -190, "w": 430, "text": "Home page, full scroll. Evolves the August prototype: same paint-vs-ink brand system, larger type and photography, one entrance reveal on load." },
+    { "id": "date-note", "x": 470, "y": -190, "w": 380, "text": "The meeting date (strip, hero, praktisch) is computed live on the real site. Shown here as a sample: dinsdag 15 september." },
+    { "id": "blog-note", "x": 1440, "y": -150, "w": 400, "text": "Blog: archive cards on top, one full post below the dashed seam. Card copy is sample; the real archive has 17 posts." },
+    { "id": "detail-note", "x": 2880, "y": -150, "w": 470, "text": "Contact and FAQ shown close-up. These two sections carry the most interaction. FAQ answers are managed by the club as ordinary posts." }
+  ],
+  "launch": { "view": "canvas" }
+}

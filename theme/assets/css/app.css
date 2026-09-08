@@ -1,0 +1,544 @@
+/*
+ * Toastmasters Hasselt — supplementary stylesheet.
+ *
+ * theme.json owns colour, type, spacing and layout tokens. This file styles
+ * the components block markup cannot express on its own: the sticky meeting
+ * strip, the hero and next-meeting grids, the run-of-show timeline, the FAQ
+ * accordion, the printed-paper grain, the WPForms restyle and the dark
+ * scheme. Classes are applied to blocks via their "Additional CSS class(es)".
+ */
+
+:root {
+	color-scheme: light;
+	--tmh-blue: var(--wp--preset--color--blue, #004165);
+	--tmh-blue-lift: var(--wp--preset--color--blue-lift, #006094);
+	--tmh-blue-deep: var(--wp--preset--color--blue-deep, #00314E);
+	--tmh-blue-950: var(--wp--preset--color--blue-950, #001626);
+	--tmh-maroon: var(--wp--preset--color--maroon, #A03C4B);
+	--tmh-yellow: var(--wp--preset--color--yellow, #F2DF74);
+	--tmh-ground: var(--wp--preset--color--ground, #F5F5F5);
+	--tmh-surface: var(--wp--preset--color--surface, #FFFFFF);
+	--tmh-surface-2: var(--wp--preset--color--surface-2, #E7E9E9);
+	--tmh-ink: var(--wp--preset--color--ink, #1A1A1A);
+	--tmh-ink-2: var(--wp--preset--color--ink-2, #5B656D);
+	--tmh-ink-3: var(--wp--preset--color--ink-3, #788289);
+	--tmh-line: var(--wp--preset--color--line, #DADEDD);
+	--tmh-line-strong: #CBD0D0;
+	--tmh-green: #2F7D52;
+	--tmh-amber: #8A6410;
+	--tmh-red: #A33327;
+	--tmh-display: var(--wp--preset--font-family--serif, Georgia, serif);
+	--tmh-sans: var(--wp--preset--font-family--sans, system-ui, sans-serif);
+	--tmh-shell: var(--wp--style--global--wide-size, 75rem);
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 72px;
+	overflow-x: hidden;
+}
+.tmh-main :where(h1, h2, h3, p, li) { overflow-wrap: break-word; }
+
+/* Only the meeting strip sticks, full-bleed, above everything. It is its own
+ * template part so it sits directly under .wp-site-blocks — a sticky box only
+ * stays put within its containing block, and that block has to span the page. */
+.wp-site-blocks > .tmh-strip-part {
+	position: sticky;
+	top: 0;
+	z-index: 60;
+}
+/* Kill the 1.5rem block-gap WordPress puts between .wp-site-blocks children —
+ * it was showing the page background as white bars between strip, header,
+ * hero and footer. Each section owns its own spacing. */
+.wp-site-blocks > * { margin-block: 0 !important; }
+.tmh-header > * { margin-block: 0 !important; }
+
+/* Force columns to stack on phones — inline flex-basis from the width
+ * attribute otherwise defeats the core mobile-stacking rule. */
+@media (max-width: 781px) {
+	.tmh-main .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
+		flex-basis: 100% !important;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+}
+
+/* ---------- entrance motion ---------- */
+@keyframes tmh-rise {
+	from { opacity: 0; transform: translateY(16px); }
+	to { opacity: 1; transform: none; }
+}
+.tmh-reveal { animation: tmh-rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+	.tmh-reveal { animation: none; }
+}
+
+/* ---------- printed-paper grain ----------
+ * No mix-blend-mode: combined with a sticky sibling it makes some browsers
+ * smear text between compositing layers. A plain low-opacity noise is enough. */
+.tmh-grain { position: relative; }
+.tmh-grain::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+	opacity: .06;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.tmh-grain > * { position: relative; z-index: 1; }
+
+/* ---------- sticky meeting strip ---------- */
+.tmh-strip-part { background: var(--tmh-blue-950); }
+.tmh-strip {
+	background: var(--tmh-blue-950);
+	color: #fff;
+	font-size: .95rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 22px;
+}
+.tmh-strip p { margin: 0; }
+.tmh-strip a { color: #fff; }
+.tmh-strip a:hover { color: var(--tmh-yellow); }
+.tmh-strip .tmh-free {
+	background: rgba(255, 255, 255, .12);
+	border: 1px solid rgba(255, 255, 255, .34);
+	font-weight: 700;
+	font-size: .78rem;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+	padding: 3px 10px;
+	border-radius: 999px;
+}
+.tmh-strip .tmh-jump { margin-left: auto; font-weight: 600; text-decoration: none; }
+
+/* On phones the sticky strip stays to one line — trim it to the one thing
+ * that matters (the next meeting) and tighten the nav row below it. */
+@media (max-width: 781px) {
+	.tmh-strip { font-size: .85rem; gap: 2px 12px; }
+	.tmh-strip > :nth-child(n+3) { display: none; }
+	.tmh-navrow { padding-block: 10px; }
+}
+
+/* ---------- header ---------- */
+.tmh-navrow { padding-block: 14px; }
+.tmh-navrow > .wp-block-group { gap: 12px 28px; }
+.tmh-header { background: var(--tmh-blue); color: #fff; }
+.tmh-header a { color: #fff; }
+.tmh-header .wp-block-site-title a {
+	font-family: var(--tmh-display);
+	font-weight: 700;
+	font-size: 1.3rem;
+	letter-spacing: -.02em;
+	text-decoration: none;
+}
+.tmh-header .wp-block-navigation {
+	font-family: var(--tmh-sans);
+	font-weight: 600;
+	--wp--style--block-gap: 0;
+	gap: 6px 26px;
+}
+.tmh-header .wp-block-navigation-item__content {
+	color: #D6E3EA;
+	padding-bottom: 4px;
+	border-bottom: 2px solid transparent;
+}
+.tmh-header .wp-block-navigation-item__content:hover,
+.tmh-header .current-menu-item .wp-block-navigation-item__content {
+	color: #fff;
+	border-bottom-color: var(--tmh-yellow);
+}
+.tmh-header .wp-block-navigation .wp-block-button__link { color: var(--tmh-blue); }
+
+/* ---------- button variants ---------- */
+.tmh-btn-guest .wp-block-button__link,
+a.wp-block-button__link.tmh-btn-guest {
+	background: #fff;
+	color: var(--tmh-blue);
+}
+.tmh-btn-guest .wp-block-button__link:hover,
+a.wp-block-button__link.tmh-btn-guest:hover {
+	background: #E4EDF3;
+	color: var(--tmh-blue);
+}
+.tmh-btn-out .wp-block-button__link,
+a.wp-block-button__link.tmh-btn-out {
+	background: transparent;
+	color: #fff;
+	box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5);
+}
+.tmh-btn-out .wp-block-button__link:hover,
+a.wp-block-button__link.tmh-btn-out:hover {
+	box-shadow: inset 0 0 0 2px var(--tmh-yellow);
+	color: #fff;
+}
+
+/* ---------- hero ---------- */
+.tmh-hero { background: var(--tmh-blue); color: #fff; }
+.tmh-hero :where(h1, h2, p) { color: #fff; }
+.tmh-hero h1 {
+	font-size: var(--wp--preset--font-size--huge, clamp(2.6rem, 1.9rem + 3vw, 4.3rem));
+	line-height: 1;
+	max-width: 20ch;
+	overflow-wrap: normal;
+	word-break: normal;
+	hyphens: none;
+}
+.tmh-hero .tmh-lede { color: #CFE0E9; max-width: 40ch; font-weight: 400; }
+.tmh-hero .tmh-only {
+	border-left: 4px solid var(--tmh-yellow);
+	background: rgba(255, 255, 255, .08);
+	padding: 14px 18px;
+	color: #EAF2F6;
+	max-width: min(44ch, 100%);
+}
+.tmh-hero .tmh-only strong { color: #fff; }
+.tmh-hero figcaption { display: none; }
+
+/* Split hero: the pitch on the left aligned to the site content edge, a large
+ * photo of the room filling the right half and bleeding to the viewport edge.
+ * WordPress gives a background group 1.25em/2.375em padding — drop it here so
+ * the photo can reach the edge; the copy and the facts row set their own. */
+.tmh-hero { padding: 0 !important; overflow: visible; }
+.tmh-hero__top {
+	display: grid;
+	grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.8fr);
+	align-items: stretch;
+	overflow: visible;
+}
+.tmh-hero__copy {
+	max-width: 40rem;
+	justify-self: end;
+	align-self: center;
+	width: 100%;
+	padding-left: var(--wp--style--root--padding-left, 2rem);
+	padding-right: clamp(1.5rem, 3vw, 3rem);
+	padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+.tmh-hero__copy > :first-child { margin-block-start: 0; }
+.tmh-hero__media {
+	width: calc(100% + 8vw);
+	max-width: none;
+	align-self: flex-end;
+	position: relative;
+	min-height: clamp(360px, 44vw, 600px);
+	/* top + bottom margin equal to the copy's vertical padding, so the photo
+	 * lines up with the headline at the top and the buttons at the bottom */
+	margin: clamp(2.5rem, 6vw, 5rem) 0 !important;
+	margin-right: -8vw;
+}
+.tmh-hero__media img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 42%;
+	border-radius: 0;
+	box-shadow: none;
+	filter: saturate(.92) contrast(1.03);
+}
+.tmh-hero__rest {
+	padding-block: clamp(1.5rem, 3.5vw, 2.75rem) clamp(2.5rem, 6vw, 5rem) !important;
+}
+.tmh-hero__rest .tmh-next { margin-top: 0; }
+@media (max-width: 899px) {
+	.tmh-hero__top { grid-template-columns: 1fr; align-items: stretch; }
+	.tmh-hero__copy {
+		max-width: none;
+		justify-self: stretch;
+		padding-right: var(--wp--style--root--padding-left, 1.5rem);
+		padding-block: clamp(2rem, 8vw, 3rem) 0;
+	}
+	.tmh-hero__media {
+		margin: 0 !important;
+		min-height: 0;
+		aspect-ratio: 16 / 10;
+	}
+}
+
+/* club photos: one treatment so mixed phone-camera quality reads as a set */
+.wp-block-image img { height: auto; }
+.tmh-photo,
+.tmh-photo.wp-block-image { margin: 0; width: 100%; }
+.tmh-photo--sticky { position: sticky; top: 172px; }
+@media (max-width: 781px) { .tmh-photo--sticky { position: static; } }
+.tmh-photo img { width: 100%; filter: saturate(.9) contrast(1.04); border-radius: 4px; }
+figcaption, .wp-element-caption { color: var(--tmh-ink-3); font-size: .9rem; margin-top: 10px; }
+.tmh-hero figcaption, .tmh-hero .wp-element-caption { color: #9FBACA; }
+
+/* ---------- next-meeting grid ---------- */
+.tmh-next {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 2px;
+	background: rgba(255, 255, 255, .14);
+	border: 1px solid rgba(255, 255, 255, .14);
+	border-radius: 10px;
+	overflow: hidden;
+}
+.tmh-next > * { background: var(--tmh-blue); padding: 22px; margin-block: 0 !important; }
+.tmh-next dt, .tmh-next .tmh-next__lab {
+	font-size: .78rem;
+	font-weight: 700;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--tmh-yellow);
+	margin-bottom: 8px;
+}
+.tmh-next dd, .tmh-next .tmh-next__val {
+	margin: 0;
+	font-family: var(--tmh-display);
+	font-weight: 700;
+	font-size: 1.28rem;
+	line-height: 1.12;
+	color: #fff;
+}
+.tmh-next small,
+.tmh-next__sub { display: block; font-family: var(--tmh-sans); font-weight: 400; font-size: .92rem; color: #BCD2DE; margin: 5px 0 0; }
+@media (max-width: 900px) {
+	.tmh-next { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+	.tmh-next { grid-template-columns: 1fr; }
+}
+.tmh-cadence { color: #CFE0E9; }
+.tmh-cadence strong { color: #fff; }
+
+/* ---------- section bands ---------- */
+.tmh-band { padding-block: var(--wp--preset--spacing--60, clamp(4.5rem, 3rem + 6vw, 8.75rem)); }
+.tmh-band--soft { background: var(--tmh-surface); border-block: 1px solid var(--tmh-line); }
+.tmh-band--blue { background: var(--tmh-blue); color: #fff; }
+.tmh-band--blue :where(h2, h3, p) { color: #fff; }
+
+.tmh-kicker {
+	font-family: var(--tmh-sans);
+	font-size: .82rem;
+	font-weight: 700;
+	letter-spacing: .15em;
+	text-transform: uppercase;
+	color: var(--tmh-maroon);
+	margin: 0 0 16px;
+}
+.tmh-band--blue .tmh-kicker { color: var(--tmh-yellow); }
+.tmh-sec-lede { font-size: var(--wp--preset--font-size--large); color: var(--tmh-ink-2); max-width: 60ch; font-weight: 400; }
+.tmh-band--blue .tmh-sec-lede { color: #CFDEE7; }
+
+/* ---------- promise list ---------- */
+.tmh-promise-big { font-family: var(--tmh-display); font-weight: 700; font-size: var(--wp--preset--font-size--x-large); line-height: 1.02; }
+.tmh-checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.tmh-checklist li { padding-left: 32px; position: relative; color: var(--tmh-ink-2); }
+.tmh-checklist li strong { color: var(--tmh-ink); }
+.tmh-checklist li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: .42em;
+	width: 14px;
+	height: 8px;
+	border-left: 2.5px solid var(--tmh-maroon);
+	border-bottom: 2.5px solid var(--tmh-maroon);
+	transform: rotate(-45deg);
+}
+
+/* ---------- fear shout ---------- */
+blockquote.tmh-shout {
+	margin: 0;
+	padding: 28px 0 28px 30px;
+	border-left: 5px solid var(--tmh-maroon);
+	font-family: var(--tmh-display);
+	font-weight: 700;
+	font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.2rem);
+	line-height: 1.14;
+	color: var(--tmh-ink);
+}
+blockquote.tmh-shout cite, blockquote.tmh-shout footer {
+	display: block;
+	font-family: var(--tmh-sans);
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.02rem;
+	color: var(--tmh-ink-2);
+	margin-top: 18px;
+	line-height: 1.55;
+}
+
+/* ---------- run-of-show timeline ---------- */
+.tmh-runsheet { display: flex; flex-direction: column; }
+.tmh-step { display: grid; grid-template-columns: 64px 1fr; gap: 0 24px; }
+.tmh-step__lampcol { display: flex; flex-direction: column; align-items: center; }
+.tmh-lamp {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	flex: none;
+	border: 2px solid currentColor;
+	display: grid;
+	place-items: center;
+}
+.tmh-lamp::after { content: ""; width: 13px; height: 13px; border-radius: 50%; background: currentColor; }
+.tmh-lamp--g { color: var(--tmh-green); }
+.tmh-lamp--a { color: var(--tmh-amber); }
+.tmh-lamp--r { color: var(--tmh-red); }
+.tmh-lamp--n { color: var(--tmh-ink-3); }
+.tmh-step__rail { width: 2px; flex: 1 1 auto; background: var(--tmh-line-strong); min-height: 18px; }
+.tmh-step:last-child .tmh-step__rail { display: none; }
+.tmh-step__body { padding-bottom: 34px; }
+.tmh-step:last-child .tmh-step__body { padding-bottom: 0; }
+.tmh-step__body h3 { margin: 0 0 6px; }
+.tmh-step__when { font-size: .9rem; color: var(--tmh-ink-3); font-variant-numeric: tabular-nums; margin: 0 0 6px; }
+.tmh-step__body p { margin: 0; color: var(--tmh-ink-2); max-width: 56ch; }
+
+/* ---------- facts ---------- */
+.tmh-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.tmh-facts > * { margin-block: 0 !important; }
+@media (max-width: 900px) { .tmh-facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .tmh-facts { grid-template-columns: 1fr; } }
+.tmh-fact { background: var(--tmh-surface); border: 1px solid var(--tmh-line); border-radius: 10px; padding: 26px; }
+.tmh-band--soft .tmh-fact { background: var(--tmh-ground); }
+.tmh-fact__lab { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--tmh-ink-3); margin: 0; }
+.tmh-fact__big { font-family: var(--tmh-display); font-weight: 700; font-size: 2rem; line-height: 1.05; color: var(--tmh-maroon); margin: 10px 0; }
+.tmh-fact p:last-child { font-size: .98rem; color: var(--tmh-ink-2); margin: 0; }
+
+/* ---------- route box ---------- */
+.tmh-route { background: var(--tmh-surface-2); border-radius: 10px; padding: 22px 24px; font-size: 1rem; color: var(--tmh-ink-2); }
+.tmh-route strong, .tmh-route b { display: block; color: var(--tmh-ink); font-weight: 700; margin-bottom: 9px; font-family: var(--tmh-display); }
+
+/* ---------- FAQ accordion (rendered by tmhasselt/faq) ---------- */
+.tmh-faq { border-top: 1px solid var(--tmh-line); max-width: 60rem; }
+.tmh-faq__item { border-bottom: 1px solid var(--tmh-line); }
+.tmh-faq__q {
+	cursor: pointer;
+	list-style: none;
+	position: relative;
+	padding: 24px 52px 24px 0;
+	font-family: var(--tmh-display);
+	font-weight: 700;
+	font-size: 1.22rem;
+	color: var(--tmh-ink);
+}
+.tmh-faq__q::-webkit-details-marker { display: none; }
+.tmh-faq__q::after {
+	content: "";
+	position: absolute;
+	right: 12px;
+	top: 34px;
+	width: 11px;
+	height: 11px;
+	border-right: 2.5px solid var(--tmh-maroon);
+	border-bottom: 2.5px solid var(--tmh-maroon);
+	transform: rotate(45deg);
+	transition: transform .18s;
+}
+.tmh-faq__item[open] .tmh-faq__q::after { transform: rotate(-135deg); top: 38px; }
+.tmh-faq__item[open] .tmh-faq__q { color: var(--tmh-maroon); }
+.tmh-faq__a { padding-bottom: 26px; color: var(--tmh-ink-2); max-width: 62ch; }
+.tmh-faq__a > :first-child { margin-top: 0; }
+.tmh-faq__a > :last-child { margin-bottom: 0; }
+.tmh-faq__q:focus-visible { outline: 3px solid var(--tmh-maroon); outline-offset: 2px; }
+
+/* ---------- blog archive cards ---------- */
+.tmh-postcard {
+	background: var(--tmh-surface);
+	border: 1px solid var(--tmh-line);
+	border-left: 4px solid var(--tmh-maroon);
+	border-radius: 10px;
+	padding: 30px 32px;
+}
+.tmh-band--soft .tmh-postcard { background: var(--tmh-ground); }
+.tmh-postcard .wp-block-post-title { margin: 0 0 8px; }
+.tmh-postcard .wp-block-post-title a { color: var(--tmh-ink); text-decoration: none; }
+.tmh-postcard .wp-block-post-title a:hover { color: var(--tmh-maroon); }
+.tmh-postcard .wp-block-post-date { font-size: .92rem; color: var(--tmh-ink-3); margin: 0 0 14px; }
+.tmh-postcard .wp-block-post-excerpt__excerpt { color: var(--tmh-ink-2); }
+.tmh-postcard .wp-block-post-excerpt__more-link { color: var(--tmh-maroon); font-weight: 600; }
+
+/* ---------- single post prose ---------- */
+.tmh-prose { max-width: 62ch; }
+.tmh-prose p, .tmh-prose ul, .tmh-prose ol { color: var(--tmh-ink-2); }
+.tmh-prose > * { margin-block: 1.1rem; }
+.tmh-prose h2, .tmh-prose h3 { color: var(--tmh-ink); margin-top: 2rem; }
+
+/* ---------- contact form (WPForms markup is the plugin's) ---------- */
+.wpforms-container { max-width: none; margin: 0; }
+.wpforms-container .wpforms-field-medium,
+.wpforms-container .wpforms-field-small,
+.wpforms-container input.wpforms-field-medium,
+.wpforms-container input.wpforms-field-small { max-width: 100%; }
+.wpforms-form .wpforms-field { padding: 0 0 16px; }
+.wpforms-form .wpforms-field-label {
+	font-family: var(--tmh-sans);
+	font-weight: 600;
+	font-size: .97rem;
+	color: var(--tmh-ink);
+	margin-bottom: 6px;
+}
+.wpforms-form input[type="text"],
+.wpforms-form input[type="email"],
+.wpforms-form textarea,
+.wpforms-form select {
+	font-family: var(--tmh-sans);
+	font-size: 1.02rem;
+	padding: 12px 14px;
+	min-height: 48px;
+	border: 2px solid var(--tmh-line);
+	border-radius: 7px;
+	background: var(--tmh-surface);
+	color: var(--tmh-ink);
+	width: 100%;
+	box-shadow: none;
+}
+.wpforms-form textarea { min-height: 118px; }
+.wpforms-form input:focus,
+.wpforms-form textarea:focus,
+.wpforms-form select:focus {
+	border-color: var(--tmh-maroon);
+	box-shadow: 0 0 0 3px rgba(160, 60, 75, .2);
+	outline: none;
+}
+.wpforms-form button[type="submit"] {
+	background: var(--tmh-blue);
+	color: #fff;
+	font-family: var(--tmh-sans);
+	font-weight: 700;
+	font-size: 1rem;
+	min-height: 48px;
+	padding: 0 26px;
+	border: 0;
+	border-radius: 7px;
+	cursor: pointer;
+}
+.wpforms-form button[type="submit"]:hover { background: var(--tmh-blue-lift); }
+.wpforms-form .wpforms-required-label,
+.wpforms-error { color: var(--tmh-maroon); }
+
+/* ---------- footer ---------- */
+.tmh-footer { background: var(--tmh-blue-deep); color: #B9CCD6; }
+.tmh-footer a { color: #fff; }
+.tmh-footer .wp-block-heading { color: #fff; font-family: var(--tmh-display); font-size: 1.1rem; }
+.tmh-footer .tmh-legal { font-size: .82rem; color: #8FA8B4; max-width: 80ch; line-height: 1.6; border-top: 1px solid rgba(255, 255, 255, .14); padding-top: 20px; }
+.tmh-logoband { background: var(--tmh-blue-deep); margin: 0 !important; width: 100%; }
+.tmh-logoband .wp-block-image,
+.tmh-logoband figure { margin: 0 !important; width: 100%; max-width: none; }
+.tmh-logoband img { width: 100%; height: auto; display: block; }
+.tmh-footer > .tmh-logoband:first-child { margin-top: 0 !important; }
+
+/* ---------- skip link + a11y ---------- */
+.skip-link:focus {
+	position: fixed;
+	top: 8px;
+	left: 8px;
+	z-index: 100;
+	background: var(--tmh-surface);
+	color: var(--tmh-ink);
+	padding: 12px 18px;
+	border-radius: 6px;
+	outline: 3px solid var(--tmh-yellow);
+}
+:where(a, .wp-element-button):focus-visible { outline: 3px solid var(--tmh-yellow); outline-offset: 3px; }
+
+/* A dark scheme is deferred to a later pass (see the conversion plan). The
+ * site commits to the light palette for now; theme.json sets color-scheme. */

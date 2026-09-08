@@ -1,0 +1,23 @@
+/*
+Theme Name: Toastmasters Hasselt
+Theme URI: https://www.toastmastershasselt.be/
+Author: Toastmasters Hasselt
+Description: Nederlandstalig, op ledenwerving gericht blokthema voor Toastmasters Hasselt. Hybride blokthema (theme.json + patterns + PHP-blokken via de plugin tmhasselt-core). Uitsluitend Nederlands.
+Version: 2.0.0
+Requires at least: 6.6
+Requires PHP: 7.4
+Tested up to: 7.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: tmhasselt
+*/
+
+/*
+ * This is a block theme. Global colour, type, spacing and layout live in
+ * theme.json; templates are in templates/ and parts/; recurring sections
+ * are patterns in patterns/. The stylesheet below is only for the things
+ * theme.json cannot express: the sticky meeting strip, the hero and
+ * next-meeting grids, the run-of-show timeline, the FAQ accordion chrome,
+ * the printed-paper grain, the WPForms restyle, and the dark scheme.
+ * It is enqueued by functions.php as tmh-app, not via style.css itself.
+ */

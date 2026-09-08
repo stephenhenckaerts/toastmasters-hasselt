@@ -1,0 +1,53 @@
+<!-- wp:template-part {"slug":"strip","tagName":"div","className":"tmh-strip-part"} /-->
+
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"tmh-main"} -->
+<main class="wp-block-group tmh-main">
+
+<!-- wp:group {"className":"tmh-band","layout":{"type":"constrained"}} -->
+<div class="wp-block-group tmh-band">
+
+<!-- wp:paragraph {"className":"tmh-kicker"} -->
+<p class="tmh-kicker">Toastmasters Hasselt</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:query-title {"type":"archive","showPrefix":false,"level":1,"fontSize":"x-large"} /-->
+
+<!-- wp:term-description {"className":"tmh-sec-lede"} /-->
+
+<!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"className":"tmh-postlist","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"},"blockGap":"1.5rem"}}} -->
+<div class="wp-block-query tmh-postlist" style="margin-top:var(--wp--preset--spacing--40)">
+<!-- wp:post-template -->
+<!-- wp:group {"className":"tmh-postcard","layout":{"type":"constrained"}} -->
+<div class="wp-block-group tmh-postcard">
+<!-- wp:post-title {"isLink":true,"fontSize":"large"} /-->
+<!-- wp:post-date /-->
+<!-- wp:post-excerpt {"moreText":"Lees verder →"} /-->
+</div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"paginationArrow":"none","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
+<!-- wp:query-pagination-previous {"label":"Vorige"} /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next {"label":"Volgende"} /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Hier staat nog niets.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results -->
+</div>
+<!-- /wp:query -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"tmhasselt/cta-band"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+  <style>
+    :root{
+      --blue:#004165; --blue-lift:#006094;
+      --maroon:#A03C4B; --maroon-deep:#772432;
+      --ground:#F5F5F5; --surface:#FFFFFF; --surface-2:#E7E9E9;
+      --ink:#1A1A1A; --ink-2:#5B656D; --ink-3:#788289;
+      --line:#DADEDD; --line-strong:#CBD0D0;
+      --sans:"Source Sans 3",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+      --display:"Source Serif 4",Georgia,"Times New Roman",serif;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:1.16rem;line-height:1.65;-webkit-font-smoothing:antialiased;}
+    h2{font-family:var(--display);margin:0;letter-spacing:-.022em;text-wrap:balance;}
+    p{margin:0;text-wrap:pretty;}
+    a{color:var(--maroon);text-underline-offset:3px;}
+    a:hover{color:var(--maroon-deep);}
+
+    @keyframes riseIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+    .reveal{animation:riseIn .65s cubic-bezier(.2,.7,.2,1) both;}
+    .d2{animation-delay:.12s;}
+    @media (prefers-reduced-motion:reduce){.reveal{animation:none;}}
+
+    .wrap{max-width:940px;margin:0 auto;padding:clamp(56px,7vw,96px) 40px;}
+    .kicker{font-size:.82rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 16px;color:var(--maroon);}
+    h2.sec{font-size:clamp(2.1rem,1.5rem + 2.6vw,3.2rem);font-weight:700;line-height:1.03;max-width:20ch;}
+    .sec-lede{font-size:clamp(1.14rem,1.05rem + .5vw,1.36rem);max-width:56ch;margin-top:18px;color:var(--ink-2);}
+
+    .list{margin-top:44px;border-top:1px solid var(--line);}
+    details{border-bottom:1px solid var(--line);}
+    details summary{cursor:pointer;list-style:none;position:relative;padding:26px 56px 26px 0;font-family:var(--display);font-weight:700;font-size:1.28rem;color:var(--ink);}
+    details summary::-webkit-details-marker{display:none;}
+    details summary::after{content:"";position:absolute;right:14px;top:36px;width:12px;height:12px;border-right:2.5px solid var(--maroon);border-bottom:2.5px solid var(--maroon);transform:rotate(45deg);transition:transform .18s;}
+    details[open] summary::after{transform:rotate(-135deg);top:40px;}
+    details[open] summary{color:var(--maroon-deep);}
+    details .ans{padding-bottom:28px;color:var(--ink-2);max-width:64ch;display:flex;flex-direction:column;gap:12px;}
+
+    .foot{margin-top:44px;padding:28px 30px;background:var(--surface-2);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+    .foot p{color:var(--ink-2);max-width:44ch;}
+    .foot b{color:var(--ink);}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 30px;font-family:var(--sans);font-weight:700;font-size:1.03rem;border:0;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none;cursor:pointer;}
+    .btn:hover{background:var(--blue-lift);}
+  </style>
+</helmet>
+
+<div class="wrap">
+  <div class="reveal">
+    <p class="kicker">Veelgestelde vragen</p>
+    <h2 class="sec">Alles wat je je waarschijnlijk afvraagt</h2>
+    <p class="sec-lede">De club beheert deze antwoorden zelf, als gewone berichten. Zo blijven ze kloppen.</p>
+  </div>
+
+  <div class="list reveal d2">
+    <details open>
+      <summary>Moet ik lid worden om te komen kijken?</summary>
+      <div class="ans">
+        <p>Nee. Kom gerust een paar keer vrijblijvend langs. Pas als je na een paar bezoeken denkt dat het iets voor jou is, vragen we of je lid wil worden.</p>
+        <p>Er is geen inschrijving nodig en je moet je bezoek niet vooraf aankondigen &mdash; al vinden we het wel fijn als je even laat weten dat je komt.</p>
+      </div>
+    </details>
+    <details open>
+      <summary>Ik heb echt last van spreekangst. Is dit dan wel iets voor mij?</summary>
+      <div class="ans">
+        <p>Juist dan. De meeste leden hier zijn ooit begonnen omdat ze het spannend vonden. Je kan heel klein starten: een rol als timekeeper, waarbij je eigenlijk alleen wat getallen afleest.</p>
+        <p>Zit je angst dieper dan dat, dan is een psycholoog de juiste plek &mdash; en dat zeggen we liever eerlijk.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Moet ik spreken als ik langskom?</summary>
+      <div class="ans"><p>Niet als je dat niet wil. Je mag gewoon achteraan zitten en toekijken.</p></div>
+    </details>
+    <details>
+      <summary>Is het echt allemaal in het Nederlands?</summary>
+      <div class="ans"><p>Ja. Wij zijn de enige volledig Nederlandstalige Toastmasters-club in Vlaanderen. De clubs in Antwerpen, Gent en Leuven werken tweetalig.</p></div>
+    </details>
+    <details>
+      <summary>Hoe vaak komen jullie samen?</summary>
+      <div class="ans"><p>Elke eerste en derde dinsdag van de maand, van 20:00 tot 22:00, in Sportcentrum Olympia in Hasselt.</p></div>
+    </details>
+    <details>
+      <summary>Wat kost het lidmaatschap?</summary>
+      <div class="ans"><p>&euro;197 voor je eerste jaar, daarna &euro;177 per jaar. Kijken kost niets, zo vaak je wil.</p></div>
+    </details>
+  </div>
+
+  <div class="foot reveal d2">
+    <p><b>Staat je vraag er niet bij?</b> Kom gewoon eens langs, of stuur ons een bericht.</p>
+    <a class="btn" href="#">Kom langs als gast</a>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

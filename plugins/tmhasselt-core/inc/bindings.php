@@ -34,7 +34,7 @@ function tmh_meeting_binding_value( $source_args, $block_instance = null, $attri
 	$next = tmh_next_meeting();
 
 	if ( null === $next ) {
-		return 'strip_line' === $key || 'next_date' === $key ? 'datum volgt' : '';
+		return in_array( $key, array( 'strip_line', 'strip_line_short', 'next_date' ), true ) ? 'datum volgt' : '';
 	}
 
 	switch ( $key ) {
@@ -55,6 +55,9 @@ function tmh_meeting_binding_value( $source_args, $block_instance = null, $attri
 
 		case 'strip_line':
 			return sprintf( '%s, 20:00–22:00', tmh_dutch_date( $next ) );
+
+		case 'strip_line_short':
+			return sprintf( '%s, 20:00', tmh_dutch_date_short( $next ) );
 
 		case 'practical_next':
 			return sprintf( 'Elke maand, van 20:00 tot 22:00. Volgende keer op %s.', tmh_dutch_date( $next ) );

@@ -117,6 +117,43 @@ function tmh_dutch_date( $dt, $with_year = false ) {
 }
 
 /**
+ * Dutch short date, e.g. "di 15 sep". For the sticky strip on phones, where
+ * the long form pushes the guest link off the line.
+ *
+ * @param DateTimeInterface $dt Date.
+ * @return string
+ */
+function tmh_dutch_date_short( $dt ) {
+	$days = array(
+		'Mon' => 'ma',
+		'Tue' => 'di',
+		'Wed' => 'wo',
+		'Thu' => 'do',
+		'Fri' => 'vr',
+		'Sat' => 'za',
+		'Sun' => 'zo',
+	);
+
+	$months = array(
+		1  => 'jan',
+		2  => 'feb',
+		3  => 'mrt',
+		4  => 'apr',
+		5  => 'mei',
+		6  => 'jun',
+		7  => 'jul',
+		8  => 'aug',
+		9  => 'sep',
+		10 => 'okt',
+		11 => 'nov',
+		12 => 'dec',
+	);
+
+	return $days[ $dt->format( 'D' ) ] . ' ' . (int) $dt->format( 'j' )
+		. ' ' . $months[ (int) $dt->format( 'n' ) ];
+}
+
+/**
  * "vanavond" / "morgenavond" / "over 12 dagen".
  *
  * @param DateTimeInterface $dt Date.

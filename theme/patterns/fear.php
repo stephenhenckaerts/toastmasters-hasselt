@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Spreekangst — even eerlijk
+ * Title: Spreekangst: even eerlijk
  * Slug: tmhasselt/fear
  * Categories: tmhasselt
  * Inserter: yes
@@ -37,7 +37,7 @@
 <p><strong>Er zijn geen negatieve gevolgen aan stress, fouten maken, blackouts of bibberende handen op een Toastmasterspodium.</strong> De meesten van ons hebben het precies zo meegemaakt.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Geen therapie, geen diagnose, geen behandeling. Gewoon oefenen, twee keer per maand, tussen mensen die hetzelfde aan het leren zijn. Zit je angst dieper dan dat, dan is een psycholoog de juiste plek — en dat zeggen we liever eerlijk.</p>
+<p>Geen therapie, geen diagnose, geen behandeling. Gewoon oefenen, twee keer per maand, tussen mensen die hetzelfde aan het leren zijn. Zit je angst dieper dan dat, dan is een psycholoog de juiste plek. Dat zeggen we liever eerlijk.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->

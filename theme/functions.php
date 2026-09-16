@@ -8,7 +8,7 @@
  * classic theme had. The meeting-date engine, the SEO head tags and the
  * JSON-LD live in the "Toastmasters Hasselt Core" plugin.
  *
- * Targets PHP 7.4 (the live host floor) — no syntax newer than 7.4.
+ * Targets PHP 7.4 (the live host floor): no syntax newer than 7.4.
  *
  * @package tmhasselt
  */
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TMH_VERSION', '2.0.2' );
+define( 'TMH_VERSION', '2.0.3' );
 
 /**
  * Theme supports. Block themes get most of this automatically; the html5 and

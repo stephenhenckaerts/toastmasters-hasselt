@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Hero — leer spreken voor publiek
+ * Title: Hero: leer spreken voor publiek
  * Slug: tmhasselt/hero
  * Categories: tmhasselt
  * Inserter: yes
@@ -23,7 +23,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/zaal.jpg' );
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"tmh-lede","fontSize":"large","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
-<p class="tmh-lede has-large-font-size" style="margin-top:var(--wp--preset--spacing--20)">Twee keer per maand oefenen we samen presenteren. Geen opleiding met slides en een lesgever — gewoon spreken, en eerlijke feedback van mensen die het zelf ook leren.</p>
+<p class="tmh-lede has-large-font-size" style="margin-top:var(--wp--preset--spacing--20)">Twee keer per maand oefenen we samen presenteren. Geen opleiding met slides en een lesgever, gewoon spreken en eerlijke feedback van mensen die het zelf ook leren.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"tmh-only","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->

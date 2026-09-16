@@ -34,7 +34,7 @@ login() {
 		| curl -sS -K - -c "$JAR" -b "$JAR" -o /dev/null \
 			"$SITE/wp-login.php"
 	grep -q 'wordpress_logged_in' "$JAR" || {
-		echo "login failed — check WP_ADMIN_USER / WP_ADMIN_PASS" >&2
+		echo "login failed: check WP_ADMIN_USER / WP_ADMIN_PASS" >&2
 		exit 1
 	}
 }
@@ -78,7 +78,7 @@ import sys, json
 d = json.load(sys.stdin)
 if 'code' in d:
     print('FAILED:', d.get('code'), d.get('message')); sys.exit(1)
-print('updated post', d['id'], '—', d['title']['rendered'])
+print('updated post', d['id'], ':', d['title']['rendered'])
 print('modified:', d['modified'])"
 		after=$(api GET "posts/$2/revisions" | python3 -c "import sys,json; print(len(json.load(sys.stdin)))")
 		echo "revisions: $before -> $after (roll back from wp-admin → Revisies)"

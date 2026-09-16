@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Oproepbalk — kom langs
+ * Title: Oproepbalk: kom langs
  * Slug: tmhasselt/cta-band
  * Categories: tmhasselt
  * Inserter: yes

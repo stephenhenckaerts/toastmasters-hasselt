@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Praktisch — wanneer, waar, wat het kost
+ * Title: Praktisch: wanneer, waar, wat het kost
  * Slug: tmhasselt/practical
  * Categories: tmhasselt
  * Inserter: yes
@@ -61,7 +61,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/publiek.jpg' );
 <p class="tmh-fact__big">&euro;197</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Daarna &euro;177 per jaar. Dat is zo'n &euro;7,40 per clubavond — we komen 24 keer per jaar samen. Een tweedaagse presentatieopleiding bij een opleidingsinstituut in Vlaanderen kost &euro;1.395 tot &euro;1.495, exclusief btw.</p>
+<p>Daarna &euro;177 per jaar. Dat is zo'n &euro;7,40 per clubavond, want we komen 24 keer per jaar samen. Een tweedaagse presentatieopleiding bij een opleidingsinstituut in Vlaanderen kost &euro;1.395 tot &euro;1.495, exclusief btw.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
@@ -102,7 +102,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/publiek.jpg' );
 <p>Kuringersteenweg 242, 3500 Hasselt. Er is een ruime parking voor het gebouw. Met het openbaar vervoer is het ongeveer vijftien minuten wandelen vanaf het station.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"className":"tmh-route","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
-<p class="tmh-route" style="margin-top:var(--wp--preset--spacing--20)"><strong>De weg naar het zaaltje</strong>Eenmaal binnen ga je rechts langs de balie, tussen de bowlingbanen door tot helemaal achteraan. Daar ga je het trapje af, door de smalle gang, tot aan het theaterzaaltje. Of je vraagt gewoon de weg aan een medewerker — dat kan natuurlijk ook.</p>
+<p class="tmh-route" style="margin-top:var(--wp--preset--spacing--20)"><strong>De weg naar het zaaltje</strong>Eenmaal binnen ga je rechts langs de balie, tussen de bowlingbanen door tot helemaal achteraan. Daar ga je het trapje af, door de smalle gang, tot aan het theaterzaaltje. Of je vraagt gewoon de weg aan een medewerker. Dat kan natuurlijk ook.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->

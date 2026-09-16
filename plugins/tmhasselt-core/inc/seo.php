@@ -63,7 +63,7 @@ function tmh_meta_description() {
  * Write the document title.
  *
  * Without this the front page inherits the site tagline, which is the English
- * Toastmasters International slogan — the one line searchers see, in the wrong
+ * Toastmasters International slogan: the one line searchers see, in the wrong
  * language, on the site whose whole argument is that it is Dutch.
  *
  * @param array $parts Title parts.
@@ -251,7 +251,7 @@ function tmh_structured_data() {
 
 		$graph[] = array(
 			'@type'               => 'Event',
-			'name'                => 'Open clubavond — presenteren oefenen in het Nederlands',
+			'name'                => 'Open clubavond: presenteren oefenen in het Nederlands',
 			'description'         => 'Kom gratis kijken. Je hoeft niet te spreken.',
 			'startDate'           => $meeting->format( DateTime::ATOM ),
 			'endDate'             => $end->format( DateTime::ATOM ),

@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Belofte — je hoeft niets te zeggen
+ * Title: Belofte: je hoeft niets te zeggen
  * Slug: tmhasselt/promise
  * Categories: tmhasselt
  * Inserter: yes

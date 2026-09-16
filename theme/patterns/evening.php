@@ -22,7 +22,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/corda.jpg' );
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"tmh-sec-lede","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|40"}}}} -->
-<p class="tmh-sec-lede" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--40)">We starten om 20:00 en eindigen om 22:00. De meeste mensen komen toe tussen 19:45 en 20:00, dan verwelkomen we je even en leggen we uit hoe de avond in elkaar zit. En ja — we gebruiken echt groene, oranje en rode lichten voor de spreektijd.</p>
+<p class="tmh-sec-lede" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--40)">We starten om 20:00 en eindigen om 22:00. De meeste mensen komen toe tussen 19:45 en 20:00, dan verwelkomen we je even en leggen we uit hoe de avond in elkaar zit. En ja, we gebruiken echt groene, oranje en rode lichten voor de spreektijd.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"tmh-first","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"default"}} -->
@@ -38,8 +38,12 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/corda.jpg' );
 		<dd>Tussen 19:45 en 20:00. Je hoeft je niet aan te melden en je staat op geen enkele lijst.</dd>
 	</div>
 	<div class="tmh-first__row">
+		<dt>Hoe je de zaal vindt</dt>
+		<dd>Binnen in Sportcentrum Olympia ga je rechts langs de balie, tussen de bowlingbanen door tot helemaal achteraan. Daar ga je het trapje af, door de smalle gang, tot aan het theaterzaaltje. Vraag het gerust aan een medewerker, die wijzen je zo de weg.</dd>
+	</div>
+	<div class="tmh-first__row">
 		<dt>Wie je opvangt</dt>
-		<dd>Onze vice president membership staat op de uitkijk voor gasten. Je hoeft niemand te zoeken &mdash; een nieuw gezicht valt in een zaal van twintig meteen op.</dd>
+		<dd>Onze vice president membership staat op de uitkijk voor gasten. Je hoeft niemand te zoeken: een nieuw gezicht valt in een zaal van twintig meteen op.</dd>
 	</div>
 	<div class="tmh-first__row">
 		<dt>Hoeveel mensen er zijn</dt>
@@ -73,21 +77,21 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/corda.jpg' );
 		<div class="tmh-step__body">
 			<h3>Voorbereide speeches</h3>
 			<p class="tmh-step__when">3 à 4 speeches van 5 tot 7 minuten</p>
-			<p>Leden brengen een speech die ze thuis voorbereid hebben. Het onderwerp kies je helemaal zelf — je job, een maatschappelijke kwestie, of het recept voor konijn met pruimen van je grootmoeder.</p>
+			<p>Leden brengen een speech die ze thuis voorbereid hebben. Het onderwerp kies je helemaal zelf: je job, een maatschappelijke kwestie, of het recept voor konijn met pruimen van je grootmoeder.</p>
 		</div>
 	</div>
 	<div class="tmh-step">
 		<div class="tmh-step__lampcol"><span class="tmh-lamp tmh-lamp--a"></span><span class="tmh-step__rail"></span></div>
 		<div class="tmh-step__body">
 			<h3>Evaluaties</h3>
-			<p>Iemand vertelt je wat sterk was en wat beter kan. Anderen letten op je timing, je stopwoorden en je taalgebruik. Niet om je af te breken — om je scherper te maken.</p>
+			<p>Iemand vertelt je wat sterk was en wat beter kan. Anderen letten op je timing, je stopwoorden en je taalgebruik. Niet om je af te breken, wel om je scherper te maken.</p>
 		</div>
 	</div>
 	<div class="tmh-step">
 		<div class="tmh-step__lampcol"><span class="tmh-lamp tmh-lamp--n"></span><span class="tmh-step__rail"></span></div>
 		<div class="tmh-step__body">
 			<h3>Intermezzo</h3>
-			<p>Een mop en een serieuze gedachte. Even ademhalen — we lassen geen pauze in, de avond loopt door tot 22:00.</p>
+			<p>Een mop en een serieuze gedachte. Even ademhalen. We lassen geen pauze in, de avond loopt door tot 22:00.</p>
 		</div>
 	</div>
 	<div class="tmh-step">
@@ -95,7 +99,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/corda.jpg' );
 		<div class="tmh-step__body">
 			<h3>Table Topics</h3>
 			<p class="tmh-step__when">1 à 2 minuten, onvoorbereid</p>
-			<p>De improvisatieronde. Je krijgt een onderwerp en praat erover. Meestal iets ludieks — ooit moesten we uitleggen welk voorwerp in huis we waren. Een zetel, een wc-bril, een wasknijper. Gasten mogen, maar hoeven niet.</p>
+			<p>De improvisatieronde. Je krijgt een onderwerp en praat erover. Meestal iets ludieks. Ooit moesten we uitleggen welk voorwerp in huis we waren. Een zetel, een wc-bril, een wasknijper. Gasten mogen, maar hoeven niet.</p>
 		</div>
 	</div>
 	<div class="tmh-step">

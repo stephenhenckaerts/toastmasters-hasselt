@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Voorpagina — volledige compositie
+ * Title: Voorpagina: volledige compositie
  * Slug: tmhasselt/front-page
  * Categories: tmhasselt
  * Block Types: core/post-content

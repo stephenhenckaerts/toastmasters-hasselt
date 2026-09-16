@@ -1,5 +1,5 @@
 /*
- * Toastmasters Hasselt — supplementary stylesheet.
+ * Toastmasters Hasselt supplementary stylesheet.
  *
  * theme.json owns colour, type, spacing and layout tokens. This file styles
  * the components block markup cannot express on its own: the sticky meeting
@@ -40,20 +40,20 @@ html {
 .tmh-main :where(h1, h2, h3, p, li) { overflow-wrap: break-word; }
 
 /* Only the meeting strip sticks, full-bleed, above everything. It is its own
- * template part so it sits directly under .wp-site-blocks — a sticky box only
+ * template part so it sits directly under .wp-site-blocks, because a sticky box only
  * stays put within its containing block, and that block has to span the page. */
 .wp-site-blocks > .tmh-strip-part {
 	position: sticky;
 	top: 0;
 	z-index: 60;
 }
-/* Kill the 1.5rem block-gap WordPress puts between .wp-site-blocks children —
+/* Kill the 1.5rem block-gap WordPress puts between .wp-site-blocks children:
  * it was showing the page background as white bars between strip, header,
  * hero and footer. Each section owns its own spacing. */
 .wp-site-blocks > * { margin-block: 0 !important; }
 .tmh-header > * { margin-block: 0 !important; }
 
-/* Force columns to stack on phones — inline flex-basis from the width
+/* Force columns to stack on phones, because inline flex-basis from the width
  * attribute otherwise defeats the core mobile-stacking rule. */
 @media (max-width: 781px) {
 	.tmh-main .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
@@ -118,7 +118,7 @@ html {
 .tmh-strip__short { display: none; }
 
 /* On phones the sticky strip stays to one line. The address and the "gratis"
- * badge drop; the date shortens and the guest link stays — it is the one thing
+ * badge drop; the date shortens and the guest link stays, because it is the one thing
  * on the bar a visitor is meant to tap. */
 @media (max-width: 781px) {
 	.tmh-strip {
@@ -131,7 +131,7 @@ html {
 	.tmh-strip p { font-size: .82rem !important; white-space: nowrap; }
 	.tmh-strip__long { display: none; }
 	.tmh-strip__short { display: inline; }
-	/* nowrap must never become a scrollbar — let the date clip instead */
+	/* nowrap must never become a scrollbar, so let the date clip instead */
 	.tmh-strip { overflow: hidden; }
 	p.tmh-strip__short { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 	.tmh-strip .tmh-jump { flex: none; }
@@ -177,7 +177,7 @@ html {
 .tmh-header .wp-block-navigation .wp-block-button__link { color: var(--tmh-blue); }
 
 /* Core swaps the navigation for its overlay at 600px, but the five links do
- * not fit beside the title and the guest button until about 1240px — between
+ * not fit beside the title and the guest button until about 1240px. Between
  * those widths the header stacked into three rows. Keep the burger up to the
  * width where the links actually fit. */
 @media (min-width: 600px) and (max-width: 1239px) {
@@ -264,7 +264,7 @@ a.wp-block-button__link.tmh-btn-out:hover {
 
 /* Split hero: the pitch on the left aligned to the site content edge, a large
  * photo of the room filling the right half and bleeding to the viewport edge.
- * WordPress gives a background group 1.25em/2.375em padding — drop it here so
+ * WordPress gives a background group 1.25em/2.375em padding, so drop it here and
  * the photo can reach the edge; the copy and the facts row set their own. */
 .tmh-hero { padding: 0 !important; overflow: visible; }
 .tmh-hero__top {
@@ -284,7 +284,7 @@ a.wp-block-button__link.tmh-btn-out:hover {
 }
 .tmh-hero__copy > :first-child { margin-block-start: 0; }
 /* The hero itself has no side padding, so this grid column already ends at the
- * viewport edge — the photo needs no negative-margin bleed on top of that. It
+ * viewport edge, so the photo needs no negative-margin bleed on top of that. It
  * used to carry one, which pushed 8vw of horizontal scroll at every width. */
 .tmh-hero__media {
 	width: 100%;

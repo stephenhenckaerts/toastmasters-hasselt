@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Contact — kom langs
+ * Title: Contact: kom langs
  * Slug: tmhasselt/contact
  * Categories: tmhasselt
  * Inserter: yes
@@ -37,7 +37,7 @@
 <p>Liever gewoon mailen? Dat kan naar <a href="mailto:hasselt.toastmasters@gmail.com">hasselt.toastmasters@gmail.com</a>.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"className":"tmh-route","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
-<p class="tmh-route" style="margin-top:var(--wp--preset--spacing--20)"><strong>Je krijgt antwoord</strong>Je vraag komt bij een van onze bestuursleden terecht. Je krijgt binnen twee werkdagen antwoord — ook als je alleen maar wil weten of je gewoon eens mag komen kijken.</p>
+<p class="tmh-route" style="margin-top:var(--wp--preset--spacing--20)"><strong>Je krijgt antwoord</strong>Je vraag komt bij een van onze bestuursleden terecht. Je krijgt binnen twee werkdagen antwoord, ook als je alleen maar wil weten of je gewoon eens mag komen kijken.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->

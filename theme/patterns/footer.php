@@ -17,7 +17,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/ti-logo-band.jpg
 <!-- wp:group {"className":"tmh-logoband","layout":{"type":"default"}} -->
 <div class="wp-block-group tmh-logoband">
 <!-- wp:image {"scale":"cover"} -->
-<figure class="wp-block-image"><img src="<?php echo $tmh_img; ?>" alt="Toastmasters International" width="1500" height="484"/></figure>
+<figure class="wp-block-image"><img src="<?php echo $tmh_img; ?>" alt="Toastmasters International" width="1500" height="484" loading="lazy" decoding="async"/></figure>
 <!-- /wp:image -->
 </div>
 <!-- /wp:group -->

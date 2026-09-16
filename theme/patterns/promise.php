@@ -18,7 +18,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/nicole-spreekt.j
 <!-- wp:column {"width":"45%"} -->
 <div class="wp-block-column" style="flex-basis:45%">
 <!-- wp:image {"className":"tmh-photo"} -->
-<figure class="wp-block-image tmh-photo"><img src="<?php echo $tmh_img; ?>" alt="Een spreker op het podium bij Toastmasters Hasselt houdt een hand achter haar oor terwijl het publiek toekijkt." width="1200" height="800"/></figure>
+<figure class="wp-block-image tmh-photo"><img src="<?php echo $tmh_img; ?>" alt="Een spreker op het podium bij Toastmasters Hasselt houdt een hand achter haar oor terwijl het publiek toekijkt." width="1200" height="800" loading="lazy" decoding="async"/></figure>
 <!-- /wp:image -->
 </div>
 <!-- /wp:column -->

@@ -45,7 +45,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/zaal.jpg' );
 <!-- /wp:group -->
 
 <!-- wp:image {"className":"tmh-hero__media"} -->
-<figure class="wp-block-image tmh-hero__media"><img src="<?php echo $tmh_img; ?>" alt="Een volle zaal met tientallen lachende deelnemers van Toastmasters Hasselt, velen met de duim omhoog." width="1280" height="720"/></figure>
+<figure class="wp-block-image tmh-hero__media"><img src="<?php echo $tmh_img; ?>" alt="Een volle zaal met tientallen lachende deelnemers van Toastmasters Hasselt, velen met de duim omhoog." width="1280" height="720" fetchpriority="high" decoding="async"/></figure>
 <!-- /wp:image -->
 
 </div>

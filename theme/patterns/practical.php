@@ -61,7 +61,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/publiek.jpg' );
 <p class="tmh-fact__big">&euro;197</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Daarna &euro;177 per jaar. Dat is zo'n &euro;7,40 per clubavond — we komen 24 keer per jaar samen. Een tweedaagse presentatieopleiding in Vlaanderen kost al snel &euro;620.</p>
+<p>Daarna &euro;177 per jaar. Dat is zo'n &euro;7,40 per clubavond — we komen 24 keer per jaar samen. Een tweedaagse presentatieopleiding bij een opleidingsinstituut in Vlaanderen kost &euro;1.395 tot &euro;1.495, exclusief btw.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
@@ -88,7 +88,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/publiek.jpg' );
 <!-- wp:column {"verticalAlignment":"center","width":"45%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:45%">
 <!-- wp:image {"className":"tmh-photo"} -->
-<figure class="wp-block-image tmh-photo"><img src="<?php echo $tmh_img; ?>" alt="Leden van Toastmasters Hasselt luisteren naar een speech in de zaal." width="900" height="675"/></figure>
+<figure class="wp-block-image tmh-photo"><img src="<?php echo $tmh_img; ?>" alt="Leden van Toastmasters Hasselt luisteren naar een speech in de zaal." width="900" height="675" loading="lazy" decoding="async"/></figure>
 <!-- /wp:image -->
 </div>
 <!-- /wp:column -->

@@ -32,7 +32,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/bar.jpg' );
 <!-- wp:column {"verticalAlignment":"center","width":"50%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:50%">
 <!-- wp:image {"className":"tmh-photo"} -->
-<figure class="wp-block-image tmh-photo"><img src="<?php echo $tmh_img; ?>" alt="Leden van Toastmasters Hasselt heffen samen het glas in de bar na een clubavond." width="1200" height="900"/><figcaption class="wp-element-caption">Na de meeting, in de bar naast de bowling.</figcaption></figure>
+<figure class="wp-block-image tmh-photo"><img src="<?php echo $tmh_img; ?>" alt="Leden van Toastmasters Hasselt heffen samen het glas in de bar na een clubavond." width="1200" height="900" loading="lazy" decoding="async"/><figcaption class="wp-element-caption">Na de meeting, in de bar naast de bowling.</figcaption></figure>
 <!-- /wp:image -->
 </div>
 <!-- /wp:column -->

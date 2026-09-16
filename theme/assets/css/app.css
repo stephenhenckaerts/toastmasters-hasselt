@@ -458,6 +458,41 @@ blockquote.tmh-shout cite, blockquote.tmh-shout footer {
 .tmh-step__when { font-size: .9rem; color: var(--tmh-ink-3); font-variant-numeric: tabular-nums; margin: 0 0 6px; }
 .tmh-step__body p { margin: 0; color: var(--tmh-ink-2); max-width: 56ch; }
 
+/* ---------- first visit ----------
+ * The one question a newcomer cannot ask anyone: what happens when I walk in.
+ * A definition list, because every row is genuinely a term and its answer. */
+.tmh-first {
+	background: var(--tmh-surface);
+	border: 1px solid var(--tmh-line);
+	border-left: 4px solid var(--tmh-maroon);
+	border-radius: 10px;
+	padding: 28px 30px;
+}
+.tmh-band--soft .tmh-first { background: var(--tmh-ground); }
+.tmh-first__title { margin: 0 0 20px; }
+.tmh-first__list { margin: 0; display: grid; gap: 14px; }
+.tmh-first__row {
+	display: grid;
+	grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+	gap: 4px 24px;
+	align-items: baseline;
+	padding-bottom: 14px;
+	border-bottom: 1px solid var(--tmh-line);
+}
+.tmh-first__row:last-child { border-bottom: 0; padding-bottom: 0; }
+.tmh-first dt {
+	font-size: .82rem;
+	font-weight: 700;
+	letter-spacing: .09em;
+	text-transform: uppercase;
+	color: var(--tmh-maroon);
+}
+.tmh-first dd { margin: 0; color: var(--tmh-ink-2); }
+@media (max-width: 680px) {
+	.tmh-first { padding: 22px 20px; }
+	.tmh-first__row { grid-template-columns: 1fr; gap: 3px; }
+}
+
 /* ---------- facts ---------- */
 .tmh-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
 .tmh-facts > * { margin-block: 0 !important; }

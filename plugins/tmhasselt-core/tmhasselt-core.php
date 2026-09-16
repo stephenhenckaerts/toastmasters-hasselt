@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Toastmasters Hasselt Core
  * Description:        Meeting-date engine, on-page SEO and structured data, and the block bindings and blocks the theme relies on. Lives outside the theme so it survives a theme swap.
- * Version:           1.0.3
+ * Version:           1.0.4
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Toastmasters Hasselt

@@ -7,6 +7,10 @@
  *
  * @package tmhasselt
  */
+
+$tmh_wa = 'https://wa.me/' . tmh_club_whatsapp() . '?text=' . rawurlencode(
+	'Hallo, ik zou graag een keer als gast langskomen bij Toastmasters Hasselt.'
+);
 ?>
 <!-- wp:group {"className":"tmh-band","layout":{"type":"constrained"}} -->
 <div class="wp-block-group tmh-band" id="kom-langs">
@@ -33,8 +37,12 @@
 
 <!-- wp:column {"width":"45%"} -->
 <div class="wp-block-column" style="flex-basis:45%">
-<!-- wp:paragraph -->
-<p>Liever gewoon mailen? Dat kan naar <a href="mailto:hasselt.toastmasters@gmail.com">hasselt.toastmasters@gmail.com</a>.</p>
+<!-- wp:paragraph {"className":"tmh-wa"} -->
+<p class="tmh-wa"><a href="<?php echo esc_url( $tmh_wa ); ?>">Stuur ons een WhatsApp-bericht</a><span>Meestal het snelste antwoord. Het bericht staat al klaar, je hoeft alleen op verzenden te duwen.</span></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
+<p style="margin-top:var(--wp--preset--spacing--20)">Liever mailen? Dat kan naar <a href="mailto:hasselt.toastmasters@gmail.com">hasselt.toastmasters@gmail.com</a>.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph {"className":"tmh-route","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} -->
 <p class="tmh-route" style="margin-top:var(--wp--preset--spacing--20)"><strong>Je krijgt antwoord</strong>Je vraag komt bij een van onze bestuursleden terecht. Je krijgt binnen twee werkdagen antwoord, ook als je alleen maar wil weten of je gewoon eens mag komen kijken.</p>

@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'TMH_VERSION', '2.0.3' );
+define( 'TMH_VERSION', '2.0.4' );
 
 /**
  * Theme supports. Block themes get most of this automatically; the html5 and

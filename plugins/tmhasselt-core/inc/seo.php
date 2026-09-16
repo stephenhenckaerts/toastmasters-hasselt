@@ -24,6 +24,28 @@ function tmh_club_email() {
 }
 
 /**
+ * Single source of truth for the club's phone number.
+ *
+ * International format, digits only, so it can be used for wa.me links as
+ * well as for schema.org. Keep this identical to the number published on
+ * toastmasters.org, or search engines see two clubs.
+ *
+ * @return string
+ */
+function tmh_club_whatsapp() {
+	return apply_filters( 'tmh_club_whatsapp', '32473280629' );
+}
+
+/**
+ * The same number, formatted for reading.
+ *
+ * @return string
+ */
+function tmh_club_phone() {
+	return apply_filters( 'tmh_club_phone', '+32 473 28 06 29' );
+}
+
+/**
  * Build a description for the current view.
  *
  * @return string
@@ -227,6 +249,7 @@ function tmh_structured_data() {
 			'alternateName'      => 'Nederlandstalige spreekclub Hasselt',
 			'url'                => home_url( '/' ),
 			'email'              => tmh_club_email(),
+			'telephone'          => tmh_club_phone(),
 			'description'        => tmh_meta_description(),
 			'inLanguage'         => 'nl-BE',
 			'parentOrganization' => array(

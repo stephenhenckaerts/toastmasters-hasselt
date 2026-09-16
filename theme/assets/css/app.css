@@ -566,6 +566,35 @@ blockquote.tmh-shout cite, blockquote.tmh-shout footer {
 .tmh-prose > * { margin-block: 1.1rem; }
 .tmh-prose h2, .tmh-prose h3 { color: var(--tmh-ink); margin-top: 2rem; }
 
+/* ---------- WhatsApp route ----------
+ * A lower-friction alternative to the form for people who will never fill one
+ * in. Tap target stays above the 44px WCAG floor. */
+.tmh-wa {
+	background: var(--tmh-surface);
+	border: 1px solid var(--tmh-line);
+	border-left: 4px solid var(--tmh-maroon);
+	border-radius: 10px;
+	padding: 18px 20px;
+	margin: 0;
+}
+.tmh-band--soft .tmh-wa { background: var(--tmh-ground); }
+.tmh-wa a {
+	display: inline-block;
+	min-height: 44px;
+	line-height: 1.35;
+	font-family: var(--tmh-display);
+	font-weight: 700;
+	font-size: 1.12rem;
+	color: var(--tmh-maroon);
+	padding-block: 4px;
+}
+.tmh-wa span {
+	display: block;
+	margin-top: 2px;
+	font-size: .93rem;
+	color: var(--tmh-ink-2);
+}
+
 /* ---------- contact form (WPForms markup is the plugin's) ---------- */
 .wpforms-container { max-width: none; margin: 0; }
 .wpforms-container .wpforms-field-medium,

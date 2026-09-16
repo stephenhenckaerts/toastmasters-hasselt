@@ -55,7 +55,7 @@ $tmh_img = esc_url( get_template_directory_uri() . '/assets/img/ti-logo-band.jpg
 <h2 class="wp-block-heading has-medium-font-size">Club</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Club 1049050 &middot; District 107<br><a href="https://www.toastmasters.org/Find-a-Club/01049050-toastmastershasselt">Onze clubpagina bij Toastmasters International</a></p>
+<p>Club 1049050 &middot; District 59, Division B<br><a href="https://www.toastmasters.org/Find-a-Club/01049050-toastmastershasselt">Onze clubpagina bij Toastmasters International</a></p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->

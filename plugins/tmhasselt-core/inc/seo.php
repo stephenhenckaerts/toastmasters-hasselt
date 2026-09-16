@@ -265,6 +265,8 @@ function tmh_structured_data() {
 			'sameAs'             => array(
 				'https://www.toastmasters.org/Find-a-Club/01049050-toastmastershasselt',
 				'https://toastmasters.be/find-a-club/flanders/',
+				'https://www.facebook.com/ToastmastersHasselt/',
+				'https://be.linkedin.com/company/toastmasters-hasselt',
 			),
 		),
 	);

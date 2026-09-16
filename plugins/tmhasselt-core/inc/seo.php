@@ -60,6 +60,106 @@ function tmh_meta_description() {
 }
 
 /**
+ * Write the document title.
+ *
+ * Without this the front page inherits the site tagline, which is the English
+ * Toastmasters International slogan — the one line searchers see, in the wrong
+ * language, on the site whose whole argument is that it is Dutch.
+ *
+ * @param array $parts Title parts.
+ * @return array
+ */
+function tmh_document_title( $parts ) {
+	if ( is_front_page() ) {
+		$parts['title']  = 'Toastmasters Hasselt';
+		$parts['tagline'] = 'Nederlandstalige spreekclub in Hasselt';
+		unset( $parts['site'] );
+	}
+	return $parts;
+}
+add_filter( 'document_title_parts', 'tmh_document_title' );
+
+/**
+ * Post types left behind by the previous theme. They hold no navigable content
+ * and nothing links to them, but they are still public, still indexable and
+ * still in the sitemap.
+ *
+ * @return array
+ */
+function tmh_orphan_post_types() {
+	return array( 'portfolio', 'services', 'testimonials' );
+}
+
+/**
+ * Keep the leftovers and the FAQ entries out of the index.
+ *
+ * Each FAQ answer also renders inside the accordion on the front page, so the
+ * standalone posts are thin duplicates competing with it.
+ *
+ * @param array $robots Robots directives.
+ * @return array
+ */
+function tmh_robots( $robots ) {
+	if ( is_singular( tmh_orphan_post_types() ) || is_post_type_archive( tmh_orphan_post_types() ) ) {
+		$robots['noindex'] = true;
+		$robots['follow']  = true;
+		return $robots;
+	}
+
+	if ( is_category( 'faq' ) ) {
+		$robots['noindex'] = true;
+		$robots['follow']  = true;
+		return $robots;
+	}
+
+	/* wp_head runs before the loop in a block theme, so ask the queried object
+	 * rather than the global post. */
+	if ( is_singular( 'post' ) ) {
+		$post = get_queried_object();
+		if ( $post instanceof WP_Post && has_category( 'faq', $post ) ) {
+			$robots['noindex'] = true;
+			$robots['follow']  = true;
+		}
+	}
+
+	return $robots;
+}
+add_filter( 'wp_robots', 'tmh_robots' );
+
+/**
+ * Drop the leftover post types from the sitemap.
+ *
+ * @param array $post_types Post types keyed by name.
+ * @return array
+ */
+function tmh_sitemap_post_types( $post_types ) {
+	foreach ( tmh_orphan_post_types() as $type ) {
+		unset( $post_types[ $type ] );
+	}
+	return $post_types;
+}
+add_filter( 'wp_sitemaps_post_types', 'tmh_sitemap_post_types' );
+
+/**
+ * Drop the FAQ posts from the sitemap without touching the blog entries.
+ *
+ * @param array  $args      Query args.
+ * @param string $post_type Post type.
+ * @return array
+ */
+function tmh_sitemap_skip_faq( $args, $post_type ) {
+	if ( 'post' !== $post_type ) {
+		return $args;
+	}
+	$faq = get_category_by_slug( 'faq' );
+	if ( $faq ) {
+		$args['category__not_in'] = array( (int) $faq->term_id );
+	}
+	return $args;
+}
+add_filter( 'wp_sitemaps_posts_query_args', 'tmh_sitemap_skip_faq', 10, 2 );
+
+/**
  * Head tags: description, canonical, Open Graph, Twitter.
  */
 function tmh_head_meta() {
